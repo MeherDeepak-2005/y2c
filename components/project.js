@@ -15,8 +15,8 @@ function project() {
     <Heading w='100%' textAlign='center'>
       Project Updates
     </Heading>
-    <SimpleGrid spacing={[5,10]} maxW='90%' m='auto' mt={10} columns={[1,1,2]} rows={[2,2,1]}>
-      <GridItem colSpan={1} rowSpan={1}>
+    <SimpleGrid spacing={[5,10]} maxW='90%' m='auto' my={10}columns={[1,1,2]} rows={[2,2,1]}>
+      <GridItem width={'90%'} ml='auto' colSpan={1} rowSpan={1}>
         <motion.img initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -24,7 +24,7 @@ function project() {
           variants={{
             visible: { opacity: 1, x:0,y:0 },
             hidden: { opacity: 0, x:-40,y:20 }
-      }} style={{width:'100%', height:'fit-content', objectFit:'cover'}} src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'>
+      }} style={{width:'100%', height:'15rem', objectFit:'cover'}} src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'>
         </motion.img>
       </GridItem>
       <GridItem mb={5} colSpan={1} rowSpan={1}>
