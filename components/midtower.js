@@ -45,13 +45,13 @@ function midtower() {
       <Heading w='100%' textAlign='center' mt={3}>
         Our Vision
       </Heading>
-      <Text mx='auto' mt={5} mb={2} w='85%' textAlign='center' fontSize={['3vw','1.5vw']}>
+      <Text mx='auto' mt={5} mb={2} h='3rem' w='65%' textAlign='left' fontSize={['3vw','1.5vw']}>
         {selectedImage.text}
       </Text>
       <Svg />
       {/* Only for desktop/tablet */}
-      <SimpleGrid display={{base:'none',md:'inline-block'}} m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
-        <GridItem display={{base:'none',md:'inline-block'}} colSpan={1} m='auto'>
+      <SimpleGrid display={{base:'none',md:'grid'}} m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
+        <GridItem colSpan={1} m='auto'>
           <HStack transform='translateX(-1rem)'>
               {
                 links.slice(infoIndex-2 || infoIndex-1, infoIndex).map(link => {
@@ -65,7 +65,7 @@ function midtower() {
         <GridItem colSpan={3}>
           <HStack justifyContent='center'>
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} bg='white' size='sm' as={ChevronLeftIcon} /> 
-            <Box width='35vw' height='40vh' maxW='50rem' maxH='50rem'>
+            <Box width='30vw' height='30vh' maxW='50rem' maxH='50rem'>
               <AnimatePresence exitBeforeEnter initial={false}>
                 <motion.img style={{objectFit:'cover',zIndex:"1"}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
               </AnimatePresence>
@@ -73,7 +73,7 @@ function midtower() {
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoRightIndex() }} bg='white' size='sm' as={ChevronRightIcon} />
           </HStack>
         </GridItem>
-        <GridItem display={{base:'none',md:'inline-block'}} colSpan={1} m='auto'>
+        <GridItem colSpan={1} m='auto'>
           <HStack>
             {
               links.slice(infoIndex+1, links.length).map(link => {
@@ -86,7 +86,7 @@ function midtower() {
         </GridItem>
       </SimpleGrid>
       {/* Only for mobile */}
-      <HStack mb={5} alginItems='center' justifyContent='space-evenly'>
+      <HStack display={{base:'inline-block',md:'none'}} mb={5} alginItems='center' justifyContent='space-evenly'>
         <IconButton onClick={()=> {manageInfoIndex()}} as={ChevronLeftIcon} />
         <Box height='20vh' width='85%'>
           <AnimatePresence exitBeforeEnter initial={false}>
