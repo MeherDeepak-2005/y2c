@@ -33,8 +33,8 @@ function Contact() {
   }
 
 
-  return <SimpleGrid spacing={10} maxW='80%' m='auto' columns={2}>
-    <Box mb={10} h='60vh' bg='black'>
+  return <SimpleGrid spacing={10} maxW='80%' m='auto' columns={[1,2]}>
+    <Box mb={[0,10]} h={['50vh','60vh']} bg='black'>
       <VStack spacing={10}>
         <Heading mt={10} fontWeight={100} color='white'>
           Yes.You.Can.
@@ -60,11 +60,11 @@ function Contact() {
         <FormLabel htmlFor='email'>
           Name
         </FormLabel>
-        <Input required border='none' borderBottom='3px solid black' type="name" placeholder="Your Name" id='email' onChange={handleNameChange}/>
+        <Input mb={5} required border='none' borderBottom='3px solid black' type="name" placeholder="Your Name" id='email' onChange={handleNameChange}/>
         <FormLabel htmlFor='email'>
           Email
         </FormLabel>
-        <Input required border='none' borderBottom='3px solid black' type="email" placeholder="Email Address" id='email' onChange={handleInputChange}/>
+        <Input mb={5} required border='none' borderBottom='3px solid black' type="email" placeholder="Email Address" id='email' onChange={handleInputChange}/>
         <FormLabel htmlFor='message'>
           Message
         </FormLabel>
