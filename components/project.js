@@ -15,7 +15,7 @@ function project() {
     <Heading w='100%' textAlign='center'>
       Project Updates
     </Heading>
-    <SimpleGrid spacing={10} maxW='90%' m='auto' mt={10} columns={[1,1,2]} rows={[2,2,1]}>
+    <SimpleGrid spacing={[0,10]} maxW='90%' m='auto' mt={10} columns={[1,1,2]} rows={[2,2,1]}>
       <GridItem colSpan={1} rowSpan={1}>
         <motion.img initial="hidden"
           whileInView="visible"
