@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
 import { ChevronLeftIcon,ChevronRightIcon } from '@chakra-ui/icons';
+import Svg from './midtower-svg';
 
 
 function midtower() {
@@ -40,13 +41,14 @@ function midtower() {
   }
 
   return (
-    <>
+    <Box position='relative'>
       <Heading w='100%' textAlign='center' mt={3}>
         Our Vision
       </Heading>
-      <Text mt={5} w='100%' textAlign='center' fontSize={['1vw','1.5vw']}>
+      <Text mx='auto' mt={5} w='85%' textAlign='center' fontSize={['1vw','1.5vw']}>
         {selectedImage.text}
       </Text>
+      <Svg/>
       <SimpleGrid m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
         <GridItem colSpan={1} m='auto'>
           <HStack transform='translateX(-1rem)'>
@@ -82,6 +84,7 @@ function midtower() {
           </HStack>
         </GridItem>
       </SimpleGrid>
+      
       <VStack display={{ base:'flex',md:'none'}}>
         <VStack>
           <Box height='fit-content'>
@@ -100,7 +103,7 @@ function midtower() {
           } */}
         </VStack>
       </VStack>
-    </>
+    </Box>
   )
 }
 
