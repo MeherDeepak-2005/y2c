@@ -86,7 +86,7 @@ function midtower() {
         </GridItem>
       </SimpleGrid>
       {/* Only for mobile */}
-      <HStack display={{base:'inline-block',md:'none'}} mb={5} alginItems='center' justifyContent='space-evenly'>
+      <HStack display={{base:'flex',md:'none'}} mb={5} alginItems='center' justifyContent='space-evenly'>
         <IconButton onClick={()=> {manageInfoIndex()}} as={ChevronLeftIcon} />
         <Box height='20vh' width='85%'>
           <AnimatePresence exitBeforeEnter initial={false}>
