@@ -2,9 +2,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box,HStack,Image,VStack } from '@chakra-ui/react';
+import {
+  Box, HStack, Image, VStack,
+  SimpleGrid,GridItem
+} from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
-import { ArrowLeftIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 
 function midtower() {
@@ -16,6 +19,17 @@ function midtower() {
   ]
   const [selectedImage, setSelectedImage] = useState(links[0]);
   const [infoIndex, setInfoIndex] = useState(0);
+
+  const manageInfoIndex = () => {
+    if (infoIndex === 0) {
+      return null;
+    }
+    else {
+      setInfoIndex(infoIndex - 1);
+      setSelectedImage(links[infoIndex - 1]);
+    }
+  }
+
   return (
     <>
       <Heading w='100%' textAlign='center' mt={3}>
@@ -24,41 +38,56 @@ function midtower() {
       <Text mt={5} w='100%' textAlign='center' fontSize={['1vw','1.5vw']}>
         {selectedImage.text}
       </Text>
-      <HStack display={{ base:'none',md:'flex'}}>
-        <IconButton _hover={{ bg: 'white' }} onClick={() => { setSelectedImage(links[0]);setInfoIndex(0) }} ml={10} bg='white' size='sm' as={ArrowLeftIcon}/>
-        <HStack>
-          <Box height='fit-content' width='20rem' m={10}>
+      <SimpleGrid m={5} spacing={10} overflow='hidden' columns={3} rows={1}>
+        <GridItem m='auto'>
+          <HStack>
+            <HStack transform='translateX(-1rem)'>
+               {
+                  links.slice(infoIndex-2, infoIndex).map(link => {
+                    return (
+                      <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
+                    )
+                  })
+                }
+            </HStack>
+            <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} ml={10} bg='white' size='sm' as={ChevronLeftIcon} /> 
+          </HStack>
+        </GridItem>
+        <GridItem>
+          <Box height='fit-content' width='100%'>
             <AnimatePresence exitBeforeEnter initial={false}>
-                <motion.img key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+              <motion.img style={{objectFit:'cover',width:"100%",height:'15rem',zIndex:"1"}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
             </AnimatePresence>
           </Box>
-        <HStack>
-        </HStack>
-          {
-            links.slice(infoIndex+1,links.length).map(link => {
-              return (
-                <Image onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-              )
-            })
-          }
-        </HStack>
-      </HStack>
+        </GridItem>
+        <GridItem m='auto'>
+          <HStack>
+            {
+              links.slice(infoIndex+1, links.length).map(link => {
+                return (
+                  <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
+                )
+              })
+            }
+          </HStack>
+        </GridItem>
+      </SimpleGrid>
       <VStack display={{ base:'flex',md:'none'}}>
         <VStack>
-          <Box height='fit-content' width='80%' m={10}>
+          <Box height='fit-content'>
             <AnimatePresence exitBeforeEnter initial={false}>
-                <motion.img key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+                <motion.img key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1,scale:'1.1'}} src={selectedImage.url}></motion.img>
             </AnimatePresence>
           </Box>
         <VStack>
         </VStack>
-          {
+          {/* {
             links.slice(infoIndex+1,links.length).map(link => {
               return (
                 <Image onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='65%' objectFit='contain' src={link.url} />
               )
             })
-          }
+          } */}
         </VStack>
       </VStack>
     </>
@@ -66,3 +95,33 @@ function midtower() {
 }
 
 export default midtower;
+
+
+      // <HStack display={{ base:'none',md:'flex'}}>
+      //   {/* <IconButton _hover={{ bg: 'white' }} onClick={() => { setSelectedImage(links[0]);setInfoIndex(0) }} ml={10} bg='white' size='sm' as={ArrowLeftIcon}/> */}
+      //     <HStack>
+      //     {/* {
+      //       links.slice(infoIndex+1,links.length).map(link => {
+      //         return (
+      //           <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
+      //         )
+      //       })
+      //     } */}
+      //   </HStack>
+      //   <HStack>
+      //     <Box height='fit-content' width='20rem' m={10}>
+      //       <AnimatePresence exitBeforeEnter initial={false}>
+      //           <motion.img key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+      //       </AnimatePresence>
+      //     </Box>
+      //   </HStack>
+      //   <HStack>
+      //     {/* {
+      //       links.slice(infoIndex+1,links.length).map(link => {
+      //         return (
+      //           <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
+      //         )
+      //       })
+      //     } */}
+      //   </HStack>
+      // </HStack>
