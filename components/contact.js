@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { PhoneIcon,EmailIcon } from '@chakra-ui/icons';
-
+import { motion,AnimatePresence } from 'framer-motion';
 
 function Contact() {
 
@@ -33,7 +33,16 @@ function Contact() {
   }
 
 
-  return <SimpleGrid spacing={10} maxW='80%' m='auto' columns={[1,2]}>
+  return <SimpleGrid spacing={10} maxW='80%' m='auto' columns={[1, 2]}>
+    <AnimatePresence initial={true}>
+    <motion.div initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 2 }}
+        variants={{
+          visible: { opacity: 1,y:0 },
+          hidden: { opacity: 0,y:40 }
+        }}>
     <Box mb={[0,10]} h={['50vh','60vh']} bg='black'>
       <VStack spacing={10}>
         <Heading mt={10} fontWeight={100} color='white'>
@@ -55,7 +64,18 @@ function Contact() {
         </Link>
         </VStack>
       </VStack>
-    </Box>
+        </Box>
+      </motion.div>
+    </AnimatePresence>
+    <AnimatePresence initial={true}>
+    <motion.div initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 2 }}
+        variants={{
+          visible: { opacity: 1,y:0 },
+          hidden: { opacity: 0,y:40 }
+        }}>
       <form onSubmit={(e) => {handleSubmit(e)}}>
         <FormLabel htmlFor='email'>
           Name
@@ -73,7 +93,9 @@ function Contact() {
           Submit
         </Button>
       </form>
-  </SimpleGrid>;
+    </motion.div>
+    </AnimatePresence>
+  </SimpleGrid>
 }
 
 export default Contact;

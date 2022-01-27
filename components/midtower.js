@@ -45,10 +45,31 @@ function midtower() {
       <Heading w='100%' textAlign='center' mt={3}>
         Our Vision
       </Heading>
-      <Text mx='auto' mt={5} mb={2} h='3rem' w='65%' textAlign='left' fontSize={['3vw','1.5vw']}>
-        {selectedImage.text}
-      </Text>
-      <Svg />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 2 }}
+        variants={{
+          visible: { opacity: 1 },
+          hidden: { opacity: 0 }
+        }}>
+        <Text mx='auto' mt={5} mb={2} h='3rem' w='65%' textAlign='left' fontSize={['3vw','1.5vw']}>
+          {selectedImage.text}
+        </Text>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 2 }}
+        variants={{
+          visible: { opacity: 1 },
+          hidden: { opacity: 0 }
+        }}>
+        <Svg />
+        
+      </motion.div>
       {/* Only for desktop/tablet */}
       <SimpleGrid display={{base:'none',md:'grid'}} m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
         <GridItem colSpan={1} m='auto'>
@@ -67,7 +88,16 @@ function midtower() {
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} bg='white' size='sm' as={ChevronLeftIcon} /> 
             <Box width='30vw' height='30vh' maxW='50rem' maxH='50rem'>
               <AnimatePresence exitBeforeEnter initial={false}>
-                <motion.img style={{objectFit:'cover',zIndex:"1"}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+                <motion.img
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ duration: 2}}
+                  variants={{
+                    visible: { display: 'inline-block' },
+                    hidden: { display: 'none' }
+                  }}
+                  style={{ objectFit: 'cover', zIndex: "1" }} key={selectedImage.url} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.4' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.url}></motion.img>
               </AnimatePresence>
             </Box>
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoRightIndex() }} bg='white' size='sm' as={ChevronRightIcon} />
