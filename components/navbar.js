@@ -41,16 +41,16 @@ function NavBar() {
             <IconButton as={logo}/>
             <Heading fontSize={20} variant='page-title'>Yes.You.Can</Heading>
             <HStack ml='2rem' spacing={5} display={{ base: 'none', md: 'flex' }}>
-              <NextLink role='group' href='/about'>
+              <NextLink role='group' href='/vision'>
                 <Link>Our Vision</Link>
               </NextLink>
-              <NextLink href='/work'>
+              <NextLink href='/projects'>
                 <Link>Projects</Link>
               </NextLink>
-              <NextLink href='/blogs'>
+              <NextLink href='/about'>
                 <Link>About us</Link>
               </NextLink>
-              <NextLink href='./donate'>
+              <NextLink href='https://meherdeepak-2005.github.io/donate-y2c'>
                 <Link>
                   Donate
                 </Link>
@@ -68,20 +68,21 @@ function NavBar() {
                   aria-label="Options"
                 />
                 <MenuList>
-                  <NextLink href="/about" passHref>
+                  <NextLink href="/vision" passHref>
                     <MenuItem as={Link}>Our Vision</MenuItem>
                   </NextLink>
-                  <NextLink href="/work" passHref>
+                  <NextLink href="/projects" passHref>
                     <MenuItem as={Link}>Projects</MenuItem>
                   </NextLink>
-                  <NextLink href="/blogs" passHref>
+                  <NextLink href="/about" passHref>
                     <MenuItem as={Link}>About us</MenuItem>
                   </NextLink>
-                  <MenuItem
-                    as={Link}
-                  >
+                  <NextLink href='https://meherdeepak-2005.github.io/donate-y2c'>
+                    <MenuItem
+                    as={Link}>
                     Donate
                     </MenuItem>
+                  </NextLink>
                 </MenuList>
               </Menu>
             </Box>
