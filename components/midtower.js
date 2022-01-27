@@ -7,7 +7,7 @@ import {
   SimpleGrid,GridItem
 } from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
-import { ChevronLeftIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon,ChevronRightIcon } from '@chakra-ui/icons';
 
 
 function midtower() {
@@ -29,6 +29,15 @@ function midtower() {
       setSelectedImage(links[infoIndex - 1]);
     }
   }
+   const manageInfoRightIndex = () => {
+    if (infoIndex === links.length - 1) {
+      return null;
+    }
+    else {
+      setInfoIndex(infoIndex +1);
+      setSelectedImage(links[infoIndex +1]);
+    }
+  }
 
   return (
     <>
@@ -38,29 +47,30 @@ function midtower() {
       <Text mt={5} w='100%' textAlign='center' fontSize={['1vw','1.5vw']}>
         {selectedImage.text}
       </Text>
-      <SimpleGrid m={5} spacing={10} overflow='hidden' columns={3} rows={1}>
-        <GridItem m='auto'>
-          <HStack>
-            <HStack transform='translateX(-1rem)'>
-               {
-                  links.slice(infoIndex-2, infoIndex).map(link => {
-                    return (
-                      <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-                    )
-                  })
-                }
-            </HStack>
-            <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} ml={10} bg='white' size='sm' as={ChevronLeftIcon} /> 
+      <SimpleGrid m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
+        <GridItem colSpan={1} m='auto'>
+          <HStack transform='translateX(-1rem)'>
+              {
+                links.slice(infoIndex-2 || infoIndex-1, infoIndex).map(link => {
+                  return (
+                    <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
+                  )
+                })
+              }
           </HStack>
         </GridItem>
-        <GridItem>
-          <Box height='fit-content' width='100%'>
-            <AnimatePresence exitBeforeEnter initial={false}>
-              <motion.img style={{objectFit:'cover',width:"100%",height:'15rem',zIndex:"1"}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
-            </AnimatePresence>
-          </Box>
+        <GridItem colSpan={3}>
+          <HStack justifyContent='center'>
+            <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} bg='white' size='sm' as={ChevronLeftIcon} /> 
+            <Box width='35vw' height='40vh' maxW='50rem' maxH='50rem'>
+              <AnimatePresence exitBeforeEnter initial={false}>
+                <motion.img style={{objectFit:'cover',zIndex:"1"}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+              </AnimatePresence>
+            </Box>
+            <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoRightIndex() }} bg='white' size='sm' as={ChevronRightIcon} />
+          </HStack>
         </GridItem>
-        <GridItem m='auto'>
+        <GridItem colSpan={1} m='auto'>
           <HStack>
             {
               links.slice(infoIndex+1, links.length).map(link => {
