@@ -49,7 +49,7 @@ function Contact() {
           Yes.You.Can.
         </Heading>
         <Heading fontSize='2vw' w='100%' textAlign='center' mt={20} color='white'>
-          We&#39; love to hear from you
+          We&#39;d love to hear from you
         </Heading>
         <VStack p={10} spacing={10}>
         <Link passHref href='tel:7002245200' >
