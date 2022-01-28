@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Box, HStack, Image, VStack,
+  Box, HStack, Image, VStack,Center,
   SimpleGrid,GridItem
 } from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
@@ -13,10 +13,10 @@ import Svg from './midtower-svg';
 
 function midtower() {
   const links = [
-    { url: 'https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',text:'The first time we visited Adharna orphange.. Had a really fun time with the kids and got to know them and improved our plans.' },
-    {url:'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',text:'We changed our plans and visited adharna orphanage and assessed each kid to give him/her personal training' },
-   { url:'https://images.unsplash.com/photo-1601807576163-587225545555?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60',text:'This is some random text' },
-    { url: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60', text: 'this is annoymous text' }
+    { image: 'https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',text:'The first time we visited Adharna orphange.. Had a really fun time with the kids and got to know them and improved our plans.' },
+    {image:'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',text:'We changed our plans and visited adharna orphanage and assessed each kid to give him/her personal training' },
+   { image:'https://images.unsplash.com/photo-1601807576163-587225545555?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60',text:'This is some random text' },
+    { image: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60', text: 'this is annoymous text' }
   ]
   const [selectedImage, setSelectedImage] = useState(links[0]);
   const [infoIndex, setInfoIndex] = useState(0);
@@ -41,7 +41,7 @@ function midtower() {
   }
 
   return (
-    <Box position='relative'>
+    <Box minHeight='40vh' mb={20} position='relative' height='fit-content'>
       <Heading w='100%' textAlign='center' mt={3}>
         Our Vision
       </Heading>
@@ -54,9 +54,6 @@ function midtower() {
           visible: { opacity: 1 },
           hidden: { opacity: 0 }
         }}>
-        <Text mx='auto' mt={5} mb={2} h='3rem' w='65%' textAlign='left' fontSize={['3vw','1.5vw']}>
-          {selectedImage.text}
-        </Text>
       </motion.div>
       <motion.div
         initial="hidden"
@@ -71,22 +68,18 @@ function midtower() {
         
       </motion.div>
       {/* Only for desktop/tablet */}
-      <SimpleGrid display={{base:'none',md:'grid'}} m={5} mb={10} spacing={10} overflow='hidden' columns={5} rows={1}>
-        <GridItem colSpan={1} m='auto'>
-          <HStack transform='translateX(-1rem)'>
-              {
-                links.slice(infoIndex-2 || infoIndex-1, infoIndex).map(link => {
-                  return (
-                    <Image key={link.url} opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-                  )
-                })
-              }
-          </HStack>
+      <SimpleGrid display={{ base: 'none', md: 'grid' }} m={10} spacing={1} overflow='hidden' columns={6} rows={1}>
+        <GridItem colSpan={3}>
+          <Text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quos illum vero numquam quisquam sunt corporis incidunt officiis! Aperiam praesentium impedit facilis laboriosam at corporis assumenda tempora adipisci, saepe quos.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo eveniet molestiae vel quasi? Perferendis sequi facilis exercitationem beatae temporibus voluptate quam inventore! Repellendus harum reiciendis similique praesentium iste odit. Autem!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quos eaque dolore ducimus quia rem numquam dolor dolorem porro at enim commodi minima molestiae amet, cupiditate ab incidunt corrupti aliquam.
+          </Text>
         </GridItem>
         <GridItem colSpan={3}>
-          <HStack justifyContent='center'>
+          <HStack alignItems='center' justifyContent='center'>
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} bg='white' size='sm' as={ChevronLeftIcon} /> 
-            <Box width='30vw' height='30vh' maxW='50rem' maxH='50rem'>
+            <Box>
               <AnimatePresence exitBeforeEnter initial={false}>
                 <motion.img
                   initial="hidden"
@@ -97,21 +90,10 @@ function midtower() {
                     visible: { display: 'inline-block' },
                     hidden: { display: 'none' }
                   }}
-                  style={{ objectFit: 'cover', zIndex: "1" }} key={selectedImage.url} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.4' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.url}></motion.img>
-              </AnimatePresence>
+                  style={{ objectFit: 'cover', zIndex: "1"}} key={selectedImage.image} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.4' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.image}></motion.img>
+                </AnimatePresence>
             </Box>
             <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoRightIndex() }} bg='white' size='sm' as={ChevronRightIcon} />
-          </HStack>
-        </GridItem>
-        <GridItem colSpan={1} m='auto'>
-          <HStack>
-            {
-              links.slice(infoIndex+1, links.length).map(link => {
-                return (
-                  <Image key={link.url} opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-                )
-              })
-            }
           </HStack>
         </GridItem>
       </SimpleGrid>
@@ -120,7 +102,7 @@ function midtower() {
         <IconButton onClick={()=> {manageInfoIndex()}} as={ChevronLeftIcon} />
         <Box height='20vh' width='85%'>
           <AnimatePresence exitBeforeEnter initial={false}>
-            <motion.img style={{objectFit:'cover',zIndex:"1",height:'100%',width:'100%'}} key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'1'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
+            <motion.img style={{objectFit:'cover',zIndex:"1",height:'100%',width:'100%'}} key={selectedImage.image} initial={{opacity:0,x:20,y:2}} transition={{duration:'1'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.image}></motion.img>
           </AnimatePresence>
         </Box>
         <IconButton onClick={() => { manageInfoRightIndex() }} as={ChevronRightIcon}/>

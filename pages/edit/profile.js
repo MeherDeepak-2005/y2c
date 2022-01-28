@@ -21,6 +21,8 @@ import ParseCookies from '../../services/parseCookies';
 import { DeleteIcon } from '@chakra-ui/icons';
 import jwt from 'jsonwebtoken'
 import { useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 
 export default function EditProfile({ userInfo }) {
   
@@ -58,6 +60,7 @@ export default function EditProfile({ userInfo }) {
         await uploadBytesResumable(imageRef, image).then(
           async snapshot => {
             const downloadUrl = await getDownloadURL(imageRef);
+            localStorage.setItem('image', downloadUrl);
             await updateDoc(docRef, {
               image: downloadUrl,
             })

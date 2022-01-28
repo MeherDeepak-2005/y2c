@@ -24,6 +24,8 @@ import {
   query
 } from '@firebase/firestore';
 import router from 'next/router'
+import NavBar from '../components/navbar';
+
 
 function Profile({ userInfo }) {
 
@@ -33,7 +35,6 @@ function Profile({ userInfo }) {
   const [role, setRole] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
-
 
 
   useEffect(() => {
@@ -52,6 +53,8 @@ function Profile({ userInfo }) {
   const telHref = `tel:${userInfo.phone}`
 
   return (
+    <>
+      <NavBar />
       <Center py={6}>
           <Box
             maxW={'320px'}
@@ -138,7 +141,8 @@ function Profile({ userInfo }) {
               </Button>
             </Stack>
           </Box>
-        </Center>
+      </Center>
+    </>
   )
 }
 

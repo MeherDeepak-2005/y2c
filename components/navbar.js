@@ -4,17 +4,18 @@ import {
 import { AnimatePresence,motion } from 'framer-motion';
 import { useColorModeValue } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'
-
 import NextLink from 'next/link'
+import { useEffect } from 'react';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../services/firebase';
 
-import {
-  Button
-} from '@chakra-ui/react';
-
-function NavBar() {
+function NavBar({imageUrl}) {
   const LinkItem = ({ href, path, _target, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+  
+ 
+
   return (
     <NextLink href={href} passHref>
       <Link
@@ -58,7 +59,7 @@ function NavBar() {
           </HStack>
           </Flex>
           <HStack spacing={5}>
-            <ThemeToggleButton/>
+            <ThemeToggleButton imageUrl={imageUrl}/>
             <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy={true} id="navbar-menu">
                 <MenuButton

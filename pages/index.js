@@ -6,15 +6,37 @@ import Midtower from '../components/midtower';
 import Head from 'next/head'
 import Project from '../components/project';
 import Contact from '../components/contact';
+import { useEffect,useState } from 'react';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../services/firebase';
+import ParseCookies from '../services/parseCookies';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken'
 
 
-export default function Home({ userInfo }) {
+export default function Home() {
+
+
+  useEffect(() => {
+    const token = Cookies.get('token')
+    const userInfo = jwt.decode(token)
+    try {
+      onSnapshot(query(collection(db, 'members'), where('email', '==', userInfo.email)), snapshot => {
+        const data = snapshot.docs[0];
+
+        localStorage.setItem('image', data.data().image)
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }, []);
+
   return (
     <>
       <Head>
         <title>Project Y2C</title>
       </Head>
-      <NavBar/>
+      <NavBar />
       <Header></Header>
       <Midtower></Midtower>
       <Project></Project>

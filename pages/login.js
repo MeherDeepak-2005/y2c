@@ -12,71 +12,35 @@ import { useState } from 'react';
 import router from 'next/router';
 import Cookie from 'js-cookie';
 import ParseCookies from '../services/parseCookies';
-import { useEffect } from 'react';
-import { collection, onSnapshot, where,query } from 'firebase/firestore';
-import { db } from '../services/firebase';
 
-export default function JoinOurTeam({ authentication }) {
+export default function Login({ authentication }) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
-  const [uniqueKey, setUniqueKey] = useState();
   const [load, setLoad] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-
-  useEffect(() => {
-     onSnapshot(query(collection(db, 'members'), where('email', '==', email)), snapshot => {
-       const data = snapshot.docs[0];
-       try {
-         if (data.data().email === email) {
-           setEmail('')
-         }
-         alert('Email is already taken')
-       } catch (err) {
-         
-       }
-    })
-  }, [email])
   
-  const push = () => {
-    router.push('/')
-  }
 
   const handleSubmit = async (e) => {
-  
     e.preventDefault();
     setLoad(true)
-    if (confirmPassword === password) {
-      const res = await fetch('/api/authenticate', {
+    const res = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           email: email,
-          uniqueKey: uniqueKey,
           password: password
         })
-      }).then((t) => t.json())
-      
-      const token = res.jwt_token
-      Cookie.set('token', token)
-
-      if (token) {
-        router.push('/profile')
-      }
-      else {
-        if (res.message) {
-          alert(res.message)
-        }
-        else {
-          alert('Email was already taken. Try again with another email.')
-        }
-        setLoad(false)
-      }
-
-    } else {
-      alert('You are not allowed to SignUp')
+    }).then((t) => t.json())
+    if (res.jwt_token) {
+      Cookie.set('token',res.jwt_token)
+      setLoad(false)
+      router.push('/profile')
+    }
+    else {
+      setLoad(false)
+      alert('Invalid email or password')
     }
   }
 
@@ -105,21 +69,20 @@ export default function JoinOurTeam({ authentication }) {
             spacing={{ base: 8 }}
             maxW={{ lg: 'lg' }}>
             <Stack spacing={4}>
-              <Heading
-                color={'gray.800'}
-                lineHeight={1.1}
-                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                Join our team
-                <Text
-                  as={'span'}
-                  bgGradient="linear(to-r, red.400,pink.400)"
-                  bgClip="text">
-                  !
-                </Text>
-              </Heading>
-              <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-                We’re looking for amazing people who are willing contribute towards the enhancement of the society just like you! Become a partof our rockstar team and help us to make the world a better place.
-              </Text>
+              <Center>
+                <Heading
+                  color={'gray.800'}
+                  lineHeight={1.1}
+                  fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                  Log In
+                  <Text
+                    as={'span'}
+                    bgGradient="linear(to-r, red.400,pink.400)"
+                    bgClip="text">
+                    !
+                  </Text>
+                </Heading>
+              </Center>
             </Stack>
             <Box as={'form'} mt={10}>
               <Stack spacing={4}>
@@ -136,38 +99,12 @@ export default function JoinOurTeam({ authentication }) {
                   }}
                 />
                 <Input
-                  onChange={(e) => setUniqueKey(e.target.value)}
-                  required
-                  type='password'
-                  placeholder="Unique Key"
-                  bg={'gray.100'}
-                  border={0}
-                  color={'gray.500'}
-                  _placeholder={{
-                    color: 'gray.500',
-                  }}
-                />
-                <Input
                   onChange={(e) => { setPassword(e.target.value) }}
                   required
                   minLength={'4'}
                   maxLength={'20'}
                   type="password"
                   placeholder="Password"
-                  bg={'gray.100'}
-                  border={0}
-                  color={'gray.500'}
-                  _placeholder={{
-                    color: 'gray.500',
-                  }}
-                />
-                <Input
-                  onChange={(e) => { setConfirmPassword(e.target.value) }}
-                  required
-                  minLength={'4'}
-                  maxLength={'20'}
-                  type="password"
-                  placeholder="Confirm Password"
                   bg={'gray.100'}
                   border={0}
                   color={'gray.500'}
@@ -200,7 +137,8 @@ export default function JoinOurTeam({ authentication }) {
   }
 }
 
-JoinOurTeam.getInitialProps = ({ req }) => {
+
+Login.getInitialProps = ({ req }) => {
   const cookies = ParseCookies(req)
   let token = false
   if (cookies.token) {

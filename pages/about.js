@@ -15,17 +15,19 @@ import {
 import { useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons';
 import { collection, getDocs, onSnapshot, where, query, getDoc } from '@firebase/firestore';
-import { db, storage } from '../services/firebase';
-
-
+import { db } from '../services/firebase';
+import NavBar from '../components/navbar';
 export default function About({ fetchedMembers }) {
   const [Loading, isLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
+  const [imageUrl, setImageUrl] = useState();
+
 
   const members = JSON.parse(fetchedMembers)
-  console.log(members)
+  
 
   return <>
+    <NavBar imageUrl={imageUrl}/>
     <Heading m={5} color='blue.300' textAlign={'center'}>
       Our Team
     </Heading>
@@ -34,7 +36,7 @@ export default function About({ fetchedMembers }) {
         return (
           <>
           <Box display={{ base: 'none', md:'block'}} maxW='90%' m='auto' boxShadow={'2xl'}>
-              <SimpleGrid columns={3} rows={1}>
+              <SimpleGrid pr={10} columns={3} rows={1}>
                 <GridItem m='auto'>
                   <Box width='fit-content'>
                     <SkeletonCircle boxSize={'150px'} zIndex="10" isLoaded={Loading}>

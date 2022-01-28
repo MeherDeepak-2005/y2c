@@ -1,0 +1,1 @@
+current user api instead of just decoding what's in the token

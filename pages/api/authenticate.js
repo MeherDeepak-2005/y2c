@@ -4,7 +4,10 @@ import {
   addDoc,
   collection,
   updateDoc,
-  doc
+  doc,
+  query,
+  where,
+  getDocs
 } from '@firebase/firestore';
 import {
   db
@@ -24,27 +27,28 @@ export default async function (req, res) {
   
   if (uniqueKey === key) {
 
-    const docRef = await addDoc(collection(db, 'members'), {
-      email: email,
-      password: password
-    })
+      const docRef = await addDoc(collection(db, 'members'), {
+        email: email,
+        password: password
+      })
 
-    await updateDoc(doc(db, 'members', docRef.id), {
-      id: docRef.id
-    })
+      await updateDoc(doc(db, 'members', docRef.id), {
+        id: docRef.id
+      })
 
-    const token = jwt.sign({
-      email: email,
-      id: docRef.id
-    }, key)
+      const token = jwt.sign({
+        email: email,
+        id: docRef.id
+      }, key)
     
-    res.send({
-      jwt_token: token
-    })
+      res.send({
+        jwt_token: token
+      })
 
-  } else {
-    res.statusCode = 404;
-    res.end('Error')
-    return
-  }
+    }
+    else {
+      res.statusCode = 404;
+      res.end('Error')
+      return
+    }
 }
