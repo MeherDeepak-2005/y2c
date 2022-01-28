@@ -131,32 +131,3 @@ function midtower() {
 
 export default midtower;
 
-
-      // <HStack display={{ base:'none',md:'flex'}}>
-      //   {/* <IconButton _hover={{ bg: 'white' }} onClick={() => { setSelectedImage(links[0]);setInfoIndex(0) }} ml={10} bg='white' size='sm' as={ArrowLeftIcon}/> */}
-      //     <HStack>
-      //     {/* {
-      //       links.slice(infoIndex+1,links.length).map(link => {
-      //         return (
-      //           <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-      //         )
-      //       })
-      //     } */}
-      //   </HStack>
-      //   <HStack>
-      //     <Box height='fit-content' width='20rem' m={10}>
-      //       <AnimatePresence exitBeforeEnter initial={false}>
-      //           <motion.img key={selectedImage.url} initial={{opacity:0,x:20,y:2}} transition={{duration:'0.4'}} animate={{x: 0,y:0,opacity:1}} src={selectedImage.url}></motion.img>
-      //       </AnimatePresence>
-      //     </Box>
-      //   </HStack>
-      //   <HStack>
-      //     {/* {
-      //       links.slice(infoIndex+1,links.length).map(link => {
-      //         return (
-      //           <Image opacity="0.3" onClick={() => { setSelectedImage(link);setInfoIndex(links.indexOf(link))}} height='fit-content' width='10rem' objectFit='contain' src={link.url} />
-      //         )
-      //       })
-      //     } */}
-      //   </HStack>
-      // </HStack>
