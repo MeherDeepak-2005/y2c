@@ -7,7 +7,8 @@ import Head from 'next/head'
 import Project from '../components/project';
 import Contact from '../components/contact';
 
-export default function Home() {
+
+export default function Home({ userInfo }) {
   return (
     <>
       <Head>
