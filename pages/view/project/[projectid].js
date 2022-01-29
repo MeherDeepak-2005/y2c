@@ -32,10 +32,12 @@ export async function getServerSideProps({ query }) {
   const user = await getDocs(collection(db, 'project_updates'));
   user.docs.map(item => {
     const data = item.data()
-    if (data.id === query.visionid) {
+    console.log(data)
+    if (data.id === query.projectid) {
       document = data;
     }
   });
+  console.log(document)
 
   return {
     props: {

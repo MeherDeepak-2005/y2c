@@ -103,7 +103,7 @@ function Project({ links }) {
                <Button onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
-            <Text>Read My Blogs</Text>
+            <Text>Read more</Text>
             <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
           </HStack>
         </Text>
