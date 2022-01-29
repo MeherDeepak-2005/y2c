@@ -96,7 +96,7 @@ export default function Login({ authentication }) {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="Project Title"
-                  value={email}
+                  value={title}
                   bg={'gray.100'}
                   border={0}
                   color={'gray.500'}
