@@ -16,7 +16,7 @@ import { useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons';
 import { collection, getDocs, onSnapshot, where, query, getDoc } from '@firebase/firestore';
 import { db } from '../services/firebase';
-import NavBar from '../components/navbar';
+import NavBar from '../components/NavBar';
 export default function About({ fetchedMembers }) {
   const [Loading, isLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)

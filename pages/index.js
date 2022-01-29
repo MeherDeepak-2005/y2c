@@ -1,6 +1,6 @@
 import { Box,HStack, VStack, Text, Heading, Image } from '@chakra-ui/react';
 import Starter from '../components/starter';
-import NavBar from '../components/navbar';
+import NavBar from '../components/NavBar';
 import Header from '../components/header';
 import Vision from '../components/Vision';
 import Head from 'next/head'
