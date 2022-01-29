@@ -31,11 +31,12 @@ export default function About({ fetchedMembers }) {
     <Heading m={5} color='blue.300' textAlign={'center'}>
       Our Team
     </Heading>
+    <VStack spacing={10}>
     {
       members.map(member => {
         return (
           <>
-          <Box display={{ base: 'none', md:'block'}} maxW='90%' m='auto' boxShadow={'2xl'}>
+          <Box display={{ base: 'none', md:'block'}} maxW='90%' m='auto' boxShadow={'xl'}>
               <SimpleGrid pr={10} columns={3} rows={1}>
                 <GridItem m='auto'>
                   <Box width='fit-content'>
@@ -125,8 +126,8 @@ export default function About({ fetchedMembers }) {
             </Center>
           </>
         )
-      })
-    }
+      })}
+    </VStack>
   </>;
 }
 
