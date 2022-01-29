@@ -24,7 +24,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from '@firebase/storage';
 import NavBar from '../../components/navbar';
 
 
-export default function Login({ authentication }) {
+export default function Project({ authentication }) {
 
   
   const [message, setMessage] = useState();
