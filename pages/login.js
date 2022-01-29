@@ -36,7 +36,8 @@ export default function Login({ authentication }) {
         })
     }).then((t) => t.json())
     if (res.jwt_token) {
-      Cookie.set('token',res.jwt_token)
+      Cookie.set('token', res.jwt_token)
+      localStorage.setItem('image',res.image)
       setLoad(false)
       router.push('/profile')
     }
