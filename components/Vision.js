@@ -17,7 +17,6 @@ function Vision({links}) {
   const [infoIndex, setInfoIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(links[infoIndex]);
 
-
   const manageInfoIndex = () => {
     if (infoIndex === 0) {
       return null;
