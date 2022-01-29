@@ -21,6 +21,7 @@ import { addDoc, updateDoc, collection, doc, where } from '@firebase/firestore';
 import { DeleteIcon } from '@chakra-ui/icons';
 import {db,storage} from '../../services/firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from '@firebase/storage';
+import NavBar from '../../components/navbar';
 
 export default function Login({ authentication }) {
 
@@ -64,6 +65,7 @@ export default function Login({ authentication }) {
 
   if (authentication) {
     return (
+      <>
        <form>
       <Box maxW={{ base: '100%', md: '50%' }} m='auto' position={'relative'}>
       <Stack
@@ -92,7 +94,7 @@ export default function Login({ authentication }) {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="Vision Title"
-                  value={email}
+                  value={title}
                   bg={'gray.100'}
                   border={0}
                   color={'gray.500'}
@@ -151,7 +153,8 @@ export default function Login({ authentication }) {
           </Box>
         </Stack>
     </Box>
-    </form>
+        </form>
+    </>
     )
   } else {
   

@@ -6,12 +6,8 @@ import Vision from '../components/Vision';
 import Head from 'next/head'
 import Project from '../components/project';
 import Contact from '../components/contact';
-import { useEffect } from 'react';
-import { getDocs,collection, onSnapshot, query, where } from 'firebase/firestore';
+import { getDocs,collection } from 'firebase/firestore';
 import { db } from '../services/firebase';
-import Cookies from 'js-cookie';
-import jwt from 'jsonwebtoken'
-
 
 export default function Home({ visionsLinks, projectUpdatesLinks }) {
   const visionLinks = JSON.parse(visionsLinks);

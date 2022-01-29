@@ -90,7 +90,7 @@ function Profile({ userInfo }) {
                   user?.role
                 }
               </Badge>
-            </Stack>
+          </Stack>
             <Stack mt={8} direction={'row'} spacing={4}>
               <Button
                 flex={1}
@@ -123,9 +123,17 @@ function Profile({ userInfo }) {
                   bg: 'blue.500',
                 }}>
                 Edit
-              </Button>
-            </Stack>
-          </Box>
+            </Button>
+          </Stack>
+          <Stack m={10}>
+            <Button onClick={()=> {router.push('/upload/project')}}>
+              Upload a project
+            </Button>
+            <Button onClick={()=> {router.push('/upload/vision')}}>
+              Update Vision
+            </Button>
+          </Stack>
+         </Box>
       </Center>
     </>
   )
@@ -138,6 +146,7 @@ export async function getServerSideProps({req}) {
   const cookies = ParseCookies(req)
   const token = cookies.token
   const userInfo = jwt.decode(token)
+  console.log(userInfo)
   const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
 
   return {
