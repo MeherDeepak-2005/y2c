@@ -32,7 +32,7 @@ function NavBar({imageUrl}) {
   }
   
   const logo = () => {
-    return <Image w='3rem' m={1} src='Logo.jpeg'/>
+    return <Image w='3rem' m={1} src='https://y2c-two.vercel.app/Logo.jpeg'/>
   }
   return (
     <AnimatePresence>
