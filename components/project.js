@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
 import { ChevronLeftIcon,ChevronRightIcon } from '@chakra-ui/icons';
+import router from 'next/router';
 
 
 function Project({ links }) {
@@ -99,7 +100,7 @@ function Project({ links }) {
                 <Text>
                   {selectedImage.message.slice(0,300)}......
                 </Text>
-               <Button mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+               <Button onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
             <Text>Read My Blogs</Text>
@@ -127,7 +128,7 @@ function Project({ links }) {
             <Text maxW='94%' m='auto'>
               {selectedImage.message.slice(0,300)}......
             </Text>
-            <Button role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+            <Button onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
             <Text>Read My Blogs</Text>
