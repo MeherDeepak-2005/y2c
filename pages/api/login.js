@@ -43,6 +43,7 @@ export default async function (req, res) {
       }, key)
 
       res.send({
+        image: userInfo.image,
         jwt_token: token
       })
     }

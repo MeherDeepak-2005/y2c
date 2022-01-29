@@ -1,13 +1,36 @@
 import React from 'react';
 import { getDocs, collection } from '@firebase/firestore';
 import { db } from '../services/firebase';
-import { Box,Text,Image } from '@chakra-ui/react';
+import { Box,Text,Image,Button,VStack } from '@chakra-ui/react';
+import NavBar from '../components/navbar';
 
-
-function projects({projects}) {
-  return <Box m={10} height='50vh' width={{base: '90vw',md: '20vw'}} overflow={'hidden'}>
-    <Image width='100%' height='50%' src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=911&q=80"></Image>
-  </Box>;
+function projects({ fetchedProjects }) {
+  const projects = JSON.parse(fetchedProjects);
+  return (
+    <>
+      <NavBar />
+      {
+        projects.map(
+          project => {
+            return (
+              <Box boxShadow='lg' p={5} key={project.id} m={10} height='fit-content' width={{ base: '90vw', md: '20vw' }} overflow={'hidden'}>
+    <VStack>
+      <Image width='100%' objectFit={'cover'} height='50%' src={project.image}></Image>
+      <Text>
+        {project.message.slice(0,200)}...
+      </Text>
+      <Button onClick={() => { router.push(`/view/vision/${project.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+        Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+      </VStack>
+    </Box>
+            )
+          }
+        )
+      }
+    </>
+  )
+  
 }
 
 export default projects;
@@ -21,7 +44,7 @@ export async function getServerSideProps() {
   resProjects.docs.map(doc => projects.push(doc.data()))
   return {
     props: {
-      projects: JSON.stringify(projects)
+      fetchedProjects: JSON.stringify(projects)
     }
   }
 }
