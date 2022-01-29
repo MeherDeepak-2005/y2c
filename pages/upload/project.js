@@ -176,7 +176,7 @@ export default function Project({ authentication }) {
 }
 
 
-Login.getInitialProps = ({ req }) => {
+Project.getInitialProps = ({ req }) => {
   const cookies = ParseCookies(req)
   let token = false
   if (cookies.token) {
