@@ -66,7 +66,7 @@ function Profile({ userInfo }) {
               }}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}>
-              {user.name}
+              {user?.name}
             </Heading>
             <Text fontWeight={600} color={'gray.500'} mb={4}>
               {user.email}
@@ -76,7 +76,7 @@ function Profile({ userInfo }) {
               color={useColorModeValue('gray.700', 'gray.400')}
               px={3}>
             {
-              user.message.slice(0,20)
+              user?.message?.slice(0,20)
           }...
             </Text>
 
@@ -87,7 +87,7 @@ function Profile({ userInfo }) {
                 bg={useColorModeValue('gray.50', 'gray.800')}
                 fontWeight={'400'}>
                 {
-                  user.role
+                  user?.role
                 }
               </Badge>
             </Stack>

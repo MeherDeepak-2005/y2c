@@ -27,6 +27,19 @@ export default async function (req, res) {
   
   if (uniqueKey === key) {
 
+    const findUser = await getDocs(query(collection(db, 'members'), where('email', '==', email)))
+
+    
+    try {
+      const userInfo = findUser.docs[0].data()
+      console.log(userInfo)
+      if (userInfo.email === email) {
+        res.send({
+          message: 'Email is already taken'
+        })
+      }
+    } catch (err) {
+      console.log("Working")
       const docRef = await addDoc(collection(db, 'members'), {
         email: email,
         password: password
@@ -46,9 +59,10 @@ export default async function (req, res) {
       })
 
     }
-    else {
-      res.statusCode = 404;
-      res.end('Error')
-      return
+    
+  } else {
+    res.send({
+      message: "Wrong unique key"
+    })
     }
 }

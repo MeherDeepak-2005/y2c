@@ -23,22 +23,8 @@ export default function JoinOurTeam({ authentication }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
   const [uniqueKey, setUniqueKey] = useState();
-  const [load, setLoad] = useState();
+  const [load, setLoad] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
-
-  useEffect(() => {
-     onSnapshot(query(collection(db, 'members'), where('email', '==', email)), snapshot => {
-       const data = snapshot.docs[0];
-       try {
-         if (data.data().email === email) {
-           setEmail('')
-         }
-         alert('Email is already taken')
-       } catch (err) {
-         
-       }
-    })
-  }, [email])
   
   const push = () => {
     router.push('/')
@@ -48,6 +34,7 @@ export default function JoinOurTeam({ authentication }) {
   
     e.preventDefault();
     setLoad(true)
+
     if (confirmPassword === password) {
       const res = await fetch('/api/authenticate', {
         method: 'POST',
@@ -62,23 +49,18 @@ export default function JoinOurTeam({ authentication }) {
       }).then((t) => t.json())
       
       const token = res.jwt_token
-      Cookie.set('token', token)
 
       if (token) {
+        Cookie.set('token', token)
         router.push('/profile')
       }
       else {
-        if (res.message) {
-          alert(res.message)
-        }
-        else {
-          alert('Email was already taken. Try again with another email.')
-        }
         setLoad(false)
+        alert(res.message)
       }
-
     } else {
-      alert('You are not allowed to SignUp')
+      setLoad(false)
+      alert('Passwords do not match. Make sure you typed in the same password and confirmed it.')
     }
   }
 
