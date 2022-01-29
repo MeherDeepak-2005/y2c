@@ -5,11 +5,13 @@ import {
 } from '@firebase/firestore';
 import { db } from '../../../services/firebase';
 import { Image,Text,Heading } from '@chakra-ui/react';
-
+import NavBar from "../../../components/navbar";
 
 export default function VisionId({ document }) {
   const info = JSON.parse(document)
   return (
+    <>
+      <NavBar/>
     <Box>
       <Image m='auto' objectFit={'cover'} w='90vw' h='50vh' src={info.image}></Image>
       <Heading w='fit-content' m='auto' my={5}>
@@ -22,7 +24,8 @@ export default function VisionId({ document }) {
           info.message
         }
       </Text>
-    </Box>
+      </Box>
+    </>
   )
 }
 
