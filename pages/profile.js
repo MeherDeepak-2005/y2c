@@ -24,7 +24,7 @@ import {
   getDocs
 } from '@firebase/firestore';
 import router from 'next/router'
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar';
 
 
 function Profile({ userInfo }) {

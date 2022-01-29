@@ -13,7 +13,7 @@ import router from 'next/router';
 import Cookie from 'js-cookie';
 import ParseCookies from '../services/parseCookies';
 import Cookies from 'js-cookie';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar';
 
 export default function Login({ authentication }) {
 

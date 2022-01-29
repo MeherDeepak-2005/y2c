@@ -15,7 +15,7 @@ import ParseCookies from '../services/parseCookies';
 import { useEffect } from 'react';
 import { collection, onSnapshot, where,query } from 'firebase/firestore';
 import { db } from '../services/firebase';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar';
 import Cookies from 'js-cookie';
 
 export default function JoinOurTeam({ authentication }) {
