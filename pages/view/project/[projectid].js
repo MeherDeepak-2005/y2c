@@ -29,7 +29,7 @@ export default function VisionId({ document }) {
 
 export async function getServerSideProps({ query }) {
   let document = {}
-  const user = await getDocs(collection(db, 'visions'));
+  const user = await getDocs(collection(db, 'project_updates'));
   user.docs.map(item => {
     const data = item.data()
     if (data.id === query.visionid) {
