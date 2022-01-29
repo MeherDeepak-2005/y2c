@@ -39,7 +39,7 @@ function NavBar({imageUrl}) {
       <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{y:-20,opacity:0}} transition={{ duration: 1 }}>
         <HStack bg='white' zIndex={1000} bg='white' justifyContent='space-between' w='100%' m='auto'>
           <Flex alignItems='center' flexDirection='row'>
-            <IconButton as={logo}/>
+            <IconButton onClick={()=> {router.push('/')}} as={logo}/>
             <Heading fontSize={20} variant='page-title'>Yes.You.Can</Heading>
             <HStack ml='2rem' spacing={5} display={{ base: 'none', md: 'flex' }}>
               <NextLink role='group' href='/vision'>
