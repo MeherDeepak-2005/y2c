@@ -95,12 +95,12 @@ function Vision({links}) {
                   visible: { opacity: 1, x: 0, y: 0 },
                   hidden: { opacity: 0, x: -40, y: 20 }
                 }}>
-                <HStack alignItems='center' justifyContent='center'>
+                <HStack alignItems='center' justifyContent='space-evenly'>
                   <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoIndex() }} bg='white' size='sm' as={ChevronLeftIcon} />
                   <Box>
                     <AnimatePresence exitBeforeEnter initial={false}>
                       <motion.img
-                        style={{ objectFit: 'cover', zIndex: "1" }} key={selectedImage.image} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.4' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.image}></motion.img>
+                        style={{ objectFit: 'cover', zIndex: "1", height:'40vh',width:'40vw' }} key={selectedImage.image} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.4' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.image}></motion.img>
                     </AnimatePresence>
                   </Box>
                   <IconButton _hover={{ bg: 'white' }} onClick={() => { manageInfoRightIndex() }} bg='white' size='sm' as={ChevronRightIcon} />
