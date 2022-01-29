@@ -12,6 +12,8 @@ import { useState } from 'react';
 import router from 'next/router';
 import Cookie from 'js-cookie';
 import ParseCookies from '../services/parseCookies';
+import Cookies from 'js-cookie';
+import NavBar from '../components/navbar';
 
 export default function Login({ authentication }) {
 
@@ -44,22 +46,34 @@ export default function Login({ authentication }) {
     }
   }
 
+  const logOut = () => {
+    Cookies.remove('token')
+    localStorage.removeItem('image')
+    router.push('/login')
+  }
+
   if (authentication) {
     return (
+      <>
+        <NavBar/>
       <Center h='100vh'>
         <VStack>
           <Heading>
           You're already logged in.
           </Heading>
-          <Button onClick={()=> {router.push('/logout')}}>
+          <Button onClick={logOut}>
             Log out
           </Button>
         </VStack>
-      </Center>
+        </Center>
+      </>
+        
     )
   } else {
   
     return (
+      <>
+        <NavBar/>
       <Center m='auto' justifyContent='center' alignItems='center' height='100vh'>
         <Box maxW={{ base: '100%', md: '50%' }} m='auto' position={'relative'}>
           <Stack
@@ -128,11 +142,17 @@ export default function Login({ authentication }) {
                 }}>
                 Submit
               </Button>
-            </Box>
-            form
-          </Stack>
-        </Box>
+              </Box>
+                <Text textAlign={'center'}>
+                  Don&#39;t have an account?
+                </Text>
+              <Button onClick={()=>{router.push('/signup')}}>
+                Signup
+              </Button>
+            </Stack>
+          </Box>
       </Center>
+      </>
     );
   }
 }

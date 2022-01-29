@@ -3,14 +3,15 @@ import React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Box, HStack, VStack,
-  SimpleGrid,GridItem,Button
+  Box, HStack, Button,
+  SimpleGrid,GridItem,VStack
 } from '@chakra-ui/react';
 import { Heading,IconButton,Text } from '@chakra-ui/react'
-import { ChevronLeftIcon,ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 
-function Project({ links }) {
+
+function Vision({links}) {
   const [infoIndex, setInfoIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(links[infoIndex]);
 
@@ -36,7 +37,7 @@ function Project({ links }) {
     return ( 
 <Box minHeight='40vh' mb={20} position='relative' height='fit-content'>
         <Heading w='100%' textAlign='center' mt={3}>
-          Project Updates
+          Our Vision
         </Heading>
         <motion.div
           initial="hidden"
@@ -60,8 +61,28 @@ function Project({ links }) {
         
         </motion.div>
         {/* Only for desktop/tablet */}
-        <SimpleGrid w={'95%'} display={{ base: 'none', md: 'grid' }} mt={10} spacing={1} overflow='hidden' columns={6} rows={1}>
-          <GridItem colSpan={3}>
+        <SimpleGrid m='auto' w={'95%'} display={{ base: 'none', md: 'grid' }} mt={10} spacing={1} overflow='hidden' columns={{base: 1, md: 6}} rows={{ base:2,md:1}}>
+          <GridItem colSpan={{base: 1,md: 3}} rowSpan={{base: 1,md: 1}}>
+            <AnimatePresence>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 40 }
+                }}>
+                <Text>
+                  {selectedImage.message.slice(0,300)}......
+                </Text>
+            <Button mt={10} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+                  Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
+              </Button>
+              </motion.div>
+            </AnimatePresence>
+          </GridItem>
+          <GridItem colSpan={{base: 1,md: 3}} rowSpan={{base: 1,md: 1}}>
             <AnimatePresence>
               <motion.div
                 initial="hidden"
@@ -85,31 +106,6 @@ function Project({ links }) {
               </motion.div>
             </AnimatePresence>
           </GridItem>
-          <GridItem colSpan={3}>
-            <AnimatePresence>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 40 }
-                }}>
-                <Text>
-                  {selectedImage.message.slice(0,300)}......
-                </Text>
-               <Button mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
-        <Text>
-          <HStack>
-            <Text>Read My Blogs</Text>
-            <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
-          </HStack>
-        </Text>
-      </Button>
-              </motion.div>
-            </AnimatePresence>
-          </GridItem>
         </SimpleGrid>
         {/* Only for mobile */}
         <SimpleGrid m='auto' w={'95%'} display={{ base: 'grid', md: 'none' }} mt={10} spacing={1} overflow='hidden' columns={{base: 1, md: 1}} rows={{ base:2,md:1}}>
@@ -127,14 +123,9 @@ function Project({ links }) {
             <Text maxW='94%' m='auto'>
               {selectedImage.message.slice(0,300)}......
             </Text>
-            <Button role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
-        <Text>
-          <HStack>
-            <Text>Read My Blogs</Text>
-            <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
-          </HStack>
-        </Text>
-      </Button>
+            <Button role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+                  Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
+              </Button>
             </VStack>
           </GridItem>
         </SimpleGrid>
@@ -142,4 +133,4 @@ function Project({ links }) {
     )
 }
 
-export default Project;
+export default Vision;

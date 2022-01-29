@@ -15,6 +15,8 @@ import ParseCookies from '../services/parseCookies';
 import { useEffect } from 'react';
 import { collection, onSnapshot, where,query } from 'firebase/firestore';
 import { db } from '../services/firebase';
+import NavBar from '../components/NavBar';
+import Cookies from 'js-cookie';
 
 export default function JoinOurTeam({ authentication }) {
 
@@ -80,22 +82,33 @@ export default function JoinOurTeam({ authentication }) {
     }
   }
 
+    const logOut = () => {
+    Cookies.remove('token')
+    localStorage.removeItem('image')
+    router.push('/login')
+  }
+
   if (authentication) {
     return (
+      <>
+        <NavBar />
       <Center h='100vh'>
         <VStack>
           <Heading>
           You're already logged in.
           </Heading>
-          <Button onClick={()=> {router.push('/logout')}}>
+          <Button onClick={logOut}>
             Log out
           </Button>
         </VStack>
-      </Center>
+        </Center>
+        </>
     )
   } else {
   
     return (
+      <>
+      <NavBar/>
       <Center m='auto' justifyContent='center' alignItems='center' height='100vh'>
         <Box maxW={{ base: '100%', md: '50%' }} m='auto' position={'relative'}>
           <Stack
@@ -192,10 +205,16 @@ export default function JoinOurTeam({ authentication }) {
                 Submit
               </Button>
             </Box>
-            form
+               <Text textAlign={'center'}>
+                  Already have an account?
+                </Text>
+            <Button onClick={() => { router.push('/login') }}>
+              Log In
+              </Button>
           </Stack>
         </Box>
-      </Center>
+        </Center>
+        </>
     );
   }
 }

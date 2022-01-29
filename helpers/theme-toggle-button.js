@@ -17,7 +17,7 @@ function ThemeToggleButton() {
       <motion.div style={{ display: 'inline-block' }} key={useColorModeValue('light', 'dark')} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ duration: 0.2 }}>
         {
           imageUrl ? (
-              <IconButton bg='white' aria-label='Account' icon={<Image boxSize='30px' objectFit={'cover'} objectPosition='center' borderRadius="full" src={imageUrl}/>} onClick={()=>{router.push('/signup')}}>
+              <IconButton bg='white' aria-label='Account' icon={<Image boxSize='30px' objectFit={'cover'} objectPosition='center' borderRadius="full" src={imageUrl}/>} onClick={()=>{router.push('/profile')}}>
           </IconButton>
           ): (
              <IconButton bg='white' aria-label='Account' icon={<MdAccountCircle size='30px'/>} onClick={()=>{router.push('/signup')}}>

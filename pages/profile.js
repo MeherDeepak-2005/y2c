@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Center,
   Box,
@@ -17,11 +17,11 @@ import jwt from 'jsonwebtoken';
 import { db } from '../services/firebase';
 import { PhoneIcon } from '@chakra-ui/icons';
 import {
-  doc,
   onSnapshot,
   collection,
   where,
-  query
+  query,
+  getDocs
 } from '@firebase/firestore';
 import router from 'next/router'
 import NavBar from '../components/navbar';
@@ -29,28 +29,11 @@ import NavBar from '../components/navbar';
 
 function Profile({ userInfo }) {
 
-  const [message, setMessage] = useState();
-  const [imageUrl, setImageUrl] = useState();
-  const [name, setName] = useState();
-  const [role, setRole] = useState();
-  const [phone, setPhone] = useState();
-  const [email, setEmail] = useState();
+  const user = JSON.parse(userInfo)[0];
 
-
-  useEffect(() => {
-    onSnapshot(query(collection(db, 'members'), where('email', '==', userInfo.email)), snapshot => {
-      const data = snapshot.docs[0];
-      setMessage(data.data().message);
-      setName(userInfo.name = data.data().name)
-      setPhone(userInfo.phone = data.data().phone)
-      setRole(userInfo.role = data.data().role)
-      setEmail(userInfo.email)
-      setImageUrl(data.data().image)
-      userInfo.id = data.data().id
-    })
-  }, [])
+  console.log(user)
   
-  const telHref = `tel:${userInfo.phone}`
+  const telHref = `tel:${user.phone}`
 
   return (
     <>
@@ -66,7 +49,7 @@ function Profile({ userInfo }) {
             textAlign={'center'}>
             <Avatar
               size={'xl'}
-              src={imageUrl}
+              src={user.image}
               alt={'Avatar Alt'}
               mb={4}
               pos={'relative'}
@@ -83,16 +66,18 @@ function Profile({ userInfo }) {
               }}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}>
-              {name}
+              {user.name}
             </Heading>
             <Text fontWeight={600} color={'gray.500'} mb={4}>
-              {email}
+              {user.email}
             </Text>
             <Text
               textAlign={'center'}
               color={useColorModeValue('gray.700', 'gray.400')}
               px={3}>
-          
+            {
+              user.message.slice(0,20)
+          }...
             </Text>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
@@ -102,7 +87,7 @@ function Profile({ userInfo }) {
                 bg={useColorModeValue('gray.50', 'gray.800')}
                 fontWeight={'400'}>
                 {
-                  role
+                  user.role
                 }
               </Badge>
             </Stack>
@@ -148,11 +133,16 @@ function Profile({ userInfo }) {
 
 export default Profile;
 
-Profile.getInitialProps = ({ req }) => {
+
+export async function getServerSideProps({req}) {
   const cookies = ParseCookies(req)
   const token = cookies.token
   const userInfo = jwt.decode(token)
+  const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
+
   return {
-    userInfo: userInfo
+    props: {
+      userInfo: JSON.stringify(user.docs.map(item => item.data()))
+    }
   };
 }

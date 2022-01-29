@@ -1,1 +1,2 @@
 current user api instead of just decoding what's in the token
+setImage when Log in

@@ -27,16 +27,18 @@ export default function Login({ authentication }) {
   
   const [message, setMessage] = useState();
   const [image, setImage] = useState();
-  const [load,setLoad] = useState(false)
+  const [load, setLoad] = useState(false)
+  const [title, setTitle] = useState('')
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoad(true)
 
-    if (message.length > 100) {
+    if (message.length > 300) {
       const docRef = await addDoc(collection(db, 'visions'), {
         message: message,
+        title: title,
         image: ''
       })
         if (image) {
@@ -46,6 +48,7 @@ export default function Login({ authentication }) {
             async snapshot => {
               const downloadUrl = await getDownloadURL(imageRef);
               await updateDoc(docRef, {
+                id: docRef,
                 image: downloadUrl,
               })
             });
@@ -84,10 +87,22 @@ export default function Login({ authentication }) {
             </Heading>
           </Stack>
           <Box as={'form'} mt={10}>
-            <Stack spacing={4}>
+              <Stack spacing={4}>
+                <Input
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  placeholder="Vision Title"
+                  value={email}
+                  bg={'gray.100'}
+                  border={0}
+                  color={'gray.500'}
+                  _placeholder={{
+                    color: 'gray.500',
+                  }}
+                />
             <Textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} bg='gray.100' _placeholder={{
               color: 'gray.500'
-            }} border='none' minLength={'100'} required placeholder='Tell readers more about the new vision... minimum of 100 characters'/>
+            }} border='none' minLength={'100'} required placeholder='Tell readers more about the new vision... minimum of 300 characters'/>
             <FormLabel htmlFor='ImageUpload'>
               <Box m='auto' cursor='pointer' bg='gray.200' width='fit-content' p={2} borderRadius={'lg'}>
                 {
@@ -166,3 +181,4 @@ Login.getInitialProps = ({ req }) => {
     authentication: token
   };
 }
+
