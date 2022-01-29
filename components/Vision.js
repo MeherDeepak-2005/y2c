@@ -75,7 +75,7 @@ function Vision({links}) {
                   hidden: { opacity: 0, y: 40 }
                 }}>
                 <Text>
-                  {selectedImage.message.slice(0,300)}......
+                  {selectedImage.message}
                 </Text>
             <Button onClick={()=> {router.push(`/view/vision/${selectedImage.id}`)}} mt={10} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                   Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>

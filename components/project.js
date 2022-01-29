@@ -98,7 +98,7 @@ function Project({ links }) {
                   hidden: { opacity: 0, y: 40 }
                 }}>
                 <Text>
-                  {selectedImage.message.slice(0,300)}......
+                  {selectedImage.message}
                 </Text>
                <Button onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>

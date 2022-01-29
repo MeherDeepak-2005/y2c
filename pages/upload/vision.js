@@ -49,7 +49,7 @@ export default function Login({ authentication }) {
             async snapshot => {
               const downloadUrl = await getDownloadURL(imageRef);
               await updateDoc(docRef, {
-                id: docRef,
+                id: docRef.id,
                 image: downloadUrl,
               })
             });
