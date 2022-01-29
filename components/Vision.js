@@ -10,6 +10,7 @@ import { Heading,IconButton,Text } from '@chakra-ui/react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import router from 'next/router';
 
+import Svg from './midtower-svg';
 
 
 function Vision({links}) {
@@ -59,7 +60,7 @@ function Vision({links}) {
             visible: { opacity: 1 },
             hidden: { opacity: 0 }
           }}>
-        
+        <Svg/>
         </motion.div>
         {/* Only for desktop/tablet */}
         <SimpleGrid m='auto' w={'95%'} display={{ base: 'none', md: 'grid' }} mt={10} spacing={1} overflow='hidden' columns={{base: 1, md: 6}} rows={{ base:2,md:1}}>
