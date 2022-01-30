@@ -35,6 +35,7 @@ export default function Login({ authentication }) {
           password: password
         })
     }).then((t) => t.json())
+    console.log(res)
     if (res.jwt_token) {
       Cookie.set('token', res.jwt_token)
       localStorage.setItem('image',res.image)
@@ -113,7 +114,8 @@ export default function Login({ authentication }) {
                     color: 'gray.500',
                   }}
                 />
-                <Input
+                  <Input
+                    value={password}
                   onChange={(e) => { setPassword(e.target.value) }}
                   required
                   minLength={'4'}

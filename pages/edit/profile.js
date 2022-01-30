@@ -110,7 +110,8 @@ export default function EditProfile({ userInfo }) {
             <Stack spacing={4}>
             <Input
               onChange={(e) => setName(e.target.value)}
-              required
+                  required
+                  value={name}
                 placeholder="Name"
                 bg={'gray.100'}
                 border={0}
@@ -134,7 +135,7 @@ export default function EditProfile({ userInfo }) {
               <FormLabel htmlFor='country'>Role</FormLabel>
             <Select value={role} onChange={(e) => { setRole(e.target.value)}} id='country' placeholder='Select Role'>
                 <option>Founder</option>
-                <option>Co-Fonder</option>
+                <option>Co-Founder</option>
                  <option>Assam Team</option>
                 <option>Hyderabad Team</option>
               </Select>

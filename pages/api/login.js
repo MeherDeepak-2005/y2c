@@ -26,14 +26,16 @@ export default async function (req, res) {
   const { email, password } = req.body;
 
   const findUser = await getDocs(query(collection(db, 'members'), where('email', '==', email)))
+
+
   try {
     const userInfo = findUser.docs[0].data()
+
     if (userInfo.password !== password) {
       res.send({
         message: 'Wrong password'
       })
-    }
-    else {
+    } else {
 
       const token = jwt.sign({
         email: userInfo.email,
@@ -46,6 +48,7 @@ export default async function (req, res) {
       })
     }
   } catch (err) {
+    console.log(err)
     res.send({
       message: 'Invalid Email or password'
     })
