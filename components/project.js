@@ -43,7 +43,7 @@ function Project({ links }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 0.6 }}
           variants={{
             visible: { opacity: 1 },
             hidden: { opacity: 0 }
@@ -53,7 +53,7 @@ function Project({ links }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 0.6 }}
           variants={{
             visible: { opacity: 1 },
             hidden: { opacity: 0 }
@@ -118,7 +118,7 @@ function Project({ links }) {
           <IconButton onClick={() => { manageInfoIndex() }} as={ChevronLeftIcon} />
           <Box height='20vh' width='85%'>
             <AnimatePresence exitBeforeEnter initial={false}>
-              <motion.img style={{ objectFit: 'cover', zIndex: "1", height: '100%', width: '100%' }} key={selectedImage.image} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '1' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.image}></motion.img>
+              <motion.img style={{ objectFit: 'cover', zIndex: "1", height: '100%', width: '100%' }} key={selectedImage.image} initial={{ opacity: 0, x: 20, y: 2 }} transition={{ duration: '0.6' }} animate={{ x: 0, y: 0, opacity: 1 }} src={selectedImage.image}></motion.img>
             </AnimatePresence>
           </Box>
           <IconButton onClick={() => { manageInfoRightIndex() }} as={ChevronRightIcon} />
