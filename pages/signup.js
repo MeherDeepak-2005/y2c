@@ -8,7 +8,7 @@ import {
   Center,
   VStack
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import router from 'next/router';
 import Cookie from 'js-cookie';
 import ParseCookies from '../services/parseCookies';
@@ -22,6 +22,14 @@ export default function JoinOurTeam({ authentication }) {
   const [uniqueKey, setUniqueKey] = useState();
   const [load, setLoad] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
+
+  const handleEmail = (e) => {
+    if (e.target.value('') === ' ') {
+      return null;
+    } else {
+      setEmail(e.target.value)
+    }
+  }
   
   const handleSubmit = async (e) => {
   
@@ -112,7 +120,7 @@ export default function JoinOurTeam({ authentication }) {
             <Box as={'form'} mt={10}>
               <Stack spacing={4}>
                 <Input
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => handleEmail(e)}
                   required
                   placeholder="Email"
                   value={email}

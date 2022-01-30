@@ -136,7 +136,7 @@ export default function EditProfile({ userInfo }) {
             <Select value={role} onChange={(e) => { setRole(e.target.value)}} id='country' placeholder='Select Role'>
                 <option>Founder</option>
                 <option>Co-Founder</option>
-                 <option>Assam Team</option>
+                 <option>Guwahati Team</option>
                 <option>Hyderabad Team</option>
               </Select>
             <Textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} bg='gray.100' _placeholder={{

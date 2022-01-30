@@ -20,6 +20,15 @@ export default function Login({ authentication }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
   const [load, setLoad] = useState();
+
+  const handleEmail = (e) => {
+    if (e.target.value === ' ') {
+      return null;
+    }
+    else {
+      setEmail(e.target.value)
+    }
+  }
   
 
   const handleSubmit = async (e) => {
@@ -103,7 +112,7 @@ export default function Login({ authentication }) {
             <Box as={'form'} mt={10}>
               <Stack spacing={4}>
                 <Input
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => handleEmail(e)}
                   required
                   placeholder="Email"
                   value={email}
