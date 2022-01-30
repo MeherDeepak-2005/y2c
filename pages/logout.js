@@ -22,7 +22,7 @@ function Logout() {
           <Heading>
           You're already logged out.
           </Heading>
-          <Button onClick={()=> {router.push('/login')}}>
+          <Button _focus={{outline:'none'}} onClick={()=> {router.push('/login')}}>
             Log In
           </Button>
         </VStack>

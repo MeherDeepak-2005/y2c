@@ -28,7 +28,7 @@ function NavBar({imageUrl}) {
   }
   
   const logo = () => {
-    return <Image w='3rem' m={1} src='/Logo.png'/>
+    return <Image w='2rem' m={1} src='/Logo.png'/>
   }
   return (
     <AnimatePresence>
@@ -37,7 +37,7 @@ function NavBar({imageUrl}) {
           <Flex alignItems={
             'center'
           } flexDirection='row'>
-            <IconButton as={logo}/>
+            <Icon _focus={{outline:'none'}} as={logo}/>
             <Heading cursor='pointer' onClick={()=> {router.push('/')}}  fontSize={20} variant='page-title'>Yes.You.Can</Heading>
             <HStack ml='2rem' spacing={5} display={{ base: 'none', md: 'flex' }}>
               <NextLink role='group' href='/vision'>
@@ -61,6 +61,7 @@ function NavBar({imageUrl}) {
             <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy={true} id="navbar-menu">
                 <MenuButton
+                  _focus={{outline:'none'}}
                   as={IconButton}
                   icon={<HamburgerIcon />}
                   variant="outline"
