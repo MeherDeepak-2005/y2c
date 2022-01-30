@@ -1,17 +1,20 @@
 import { Box } from "@chakra-ui/react";
 import {
   collection,
-  getDocs
+  getDocs,
+  where
 } from '@firebase/firestore';
 import { db } from '../../../services/firebase';
-import { Image,Text,Heading } from '@chakra-ui/react';
+import { Image,Text,Heading,Button,Center } from '@chakra-ui/react';
 import NavBar from "../../../components/navbar";
+import { query as FireQuery } from '@firebase/firestore';
+import router from 'next/router';
 
 export default function VisionId({ document }) {
   const info = JSON.parse(document)
   return (
     <>
-      <NavBar/>
+      <NavBar />
     <Box>
       <Image m='auto' objectFit={'cover'} w='90vw' h='50vh' src={info.image}></Image>
       <Heading w='fit-content' m='auto' my={5}>
@@ -23,7 +26,21 @@ export default function VisionId({ document }) {
         {
           info.message
         }
-      </Text>
+        </Text>
+        <Center m={10}>
+
+        
+          {
+                    typeof window !== 'undefined' ? (
+                      localStorage.getItem('image') && <Button onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+        Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+                    ) : (
+                        <></>
+                    )
+                    
+          }
+          </Center>
       </Box>
     </>
   )
@@ -32,12 +49,10 @@ export default function VisionId({ document }) {
 
 export async function getServerSideProps({ query }) {
   let document = {}
-  const user = await getDocs(collection(db, 'visions'));
+  const user = await getDocs(FireQuery(collection(db, 'visions'),where('id', '==', query.visionid)));
   user.docs.map(item => {
     const data = item.data()
-    if (data.id === query.visionid) {
-      document = data;
-    }
+    document = data;
   });
 
   return {

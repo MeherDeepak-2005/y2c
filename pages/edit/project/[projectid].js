@@ -1,62 +1,47 @@
+import { Box } from "@chakra-ui/react";
 import {
-  Box,
-  Flex,
-  Stack,
-  Heading,
-  Text,
-  FormLabel,
-  Input,
-  Button,
-  Textarea,
-  IconButton,
-  HStack,
-  Select
-} from '@chakra-ui/react';
+  collection,
+  getDocs,
+  where
+} from '@firebase/firestore';
+import { db } from '../../../services/firebase';
+import { Stack,Text,Heading,Input,FormLabel,Textarea,Button } from '@chakra-ui/react';
+import NavBar from "../../../components/navbar";
+import { query as FireQuery,doc,updateDoc } from '@firebase/firestore';
 import { useState } from 'react';
-import { onSnapshot, updateDoc, query, collection, doc, where } from '@firebase/firestore';
-import { ref, getDownloadURL, uploadBytesResumable } from '@firebase/storage';
-import NavBar from '../../components/navbar';
-import router from 'next/router';
-import { db,storage } from '../../services/firebase';
-import ParseCookies from '../../services/parseCookies';
-import { DeleteIcon } from '@chakra-ui/icons';
-import jwt from 'jsonwebtoken'
-import { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import router from 'next/router';
+
+export default function EditProfile({ document }) {
+
+  const token = Cookies.get('token');
+  const decodedToken = jwt.decode(token);
 
 
-export default function EditProfile({ userInfo }) {
+  const documentInfo = JSON.parse(document)
   
-  const email = userInfo.email;
-  const [message, setMessage] = useState();
+  const [author, setAuthor] = useState(documentInfo.author);
+  const [message, setMessage] = useState(documentInfo.message);
   const [image, setImage] = useState(null);
-  const [name, setName] = useState();
-  const [phone, setPhone] = useState();
+  const [title, setTitle] = useState(documentInfo.title);
   const [load, setLoad] = useState();
-  const [userDoc,setUserDocId] = useState()
-  const [role, setRole] = useState();
-
-  useEffect(async () => { 
-    onSnapshot(query(collection(db, 'members'), where('email', '==', email)), snapshot => {
-      const data = snapshot.docs[0];
-      setMessage(data.data().message);
-      setName(data.data().name);
-      setPhone(data.data().phone);
-      setRole(data.data().role);
-      setUserDocId(data.data().id)
-    })
-  },[db,doc])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoad(true)
-    const docRef = doc(db, 'members', userDoc);
+    const docRef = doc(db, 'project_updates', documentInfo.id);
 
-    if (message.length > 100) {
+
+    if (message.length > 300) {
+      
+      if (!author.includes(decodedToken.email)) {
+        author.push(decodedToken.email);
+      }
     
       if (image) {
-        const imageRef = ref(storage, `profile_pictures/${name}/${image.name}`)
+        const imageRef = ref(storage, `project_updates/${image.name}`)
     
         await uploadBytesResumable(imageRef, image).then(
           async snapshot => {
@@ -68,9 +53,8 @@ export default function EditProfile({ userInfo }) {
           });
       }
       const update = await updateDoc(docRef, {
-        name: name,
-        phone: phone,
-        role: role,
+        title: title,
+        author: author,
         message: message,
       });
       router.push('/profile')
@@ -97,7 +81,7 @@ export default function EditProfile({ userInfo }) {
               color={'gray.800'}
               lineHeight={1.1}
               fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-              Edit your profile
+              Edit project
               <Text
                 as={'span'}
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -108,10 +92,11 @@ export default function EditProfile({ userInfo }) {
           </Stack>
           <Box as={'form'} mt={10}>
             <Stack spacing={4}>
-            <Input
-              onChange={(e) => setName(e.target.value)}
+                <Input
+                  value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
-                placeholder="Name"
+                placeholder="Title"
                 bg={'gray.100'}
                 border={0}
                 color={'gray.500'}
@@ -119,28 +104,9 @@ export default function EditProfile({ userInfo }) {
                   color: 'gray.500',
                 }}
               />
-              <Input
-                value={phone}
-              onChange={(e) => { setPhone(e.target.value) }}
-              required
-                placeholder="+91 "
-                bg={'gray.100'}
-                border={0}
-                color={'gray.500'}
-                _placeholder={{
-                  color: 'gray.500',
-                }}
-            />
-              <FormLabel htmlFor='country'>Role</FormLabel>
-            <Select value={role} onChange={(e) => { setRole(e.target.value);console.log(e.target.value)}} id='country' placeholder='Select Role'>
-                <option>Founder</option>
-                <option>Co-Fonder</option>
-                 <option>Assam Team</option>
-                <option>Hyderabad Team</option>
-              </Select>
             <Textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} bg='gray.100' _placeholder={{
               color: 'gray.500'
-            }} border='none' minLength={'100'} required placeholder='Tell us about yourself'/>
+            }} border='none' minLength={'100'} required />
             <FormLabel htmlFor='ImageUpload'>
               <Box m='auto' cursor='pointer' bg='gray.200' width='fit-content' p={2} borderRadius={'lg'}>
                 {
@@ -189,16 +155,22 @@ export default function EditProfile({ userInfo }) {
           </Box>
         </Stack>
     </Box>
-      </form>
+    </form>
     </>
   );
 }
 
-EditProfile.getInitialProps = ({ req }) => {
-  const cookies = ParseCookies(req)
-  const token = cookies.token
-  const userInfo = jwt.decode(token)
+export async function getServerSideProps({ query }) {
+  let document = {}
+  const user = await getDocs(FireQuery(collection(db, 'project_updates'),where('id', '==', query.projectid)));
+  user.docs.map(item => {
+    const data = item.data()
+    document = data;
+  });
+
   return {
-    userInfo: userInfo
+    props: {
+      document: JSON.stringify(document)
+    }
   };
 }
