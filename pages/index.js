@@ -17,6 +17,7 @@ export default function Home({ visionsLinks, projectUpdatesLinks }) {
       <Head>
         <title>Project Y2C</title>
         <link rel="icon" href="/Logo.png" />
+        <meta name="google-site-verification" content="gW6Xc80JgsNeLjSZ-ihmv69vY0N5Vcp_f4kVu0hCHmw" />
       </Head>
       <NavBar />
       <Header></Header>
