@@ -9,11 +9,16 @@ import { Image,Text,Heading,Button,Center } from '@chakra-ui/react';
 import NavBar from "../../../components/navbar";
 import { query as FireQuery } from '@firebase/firestore';
 import router from 'next/router';
+import Head from 'next/head';
+
 
 export default function VisionId({ document }) {
   const info = JSON.parse(document)
   return (
     <>
+       <Head>
+        <title>{info.title}</title>
+      </Head>
       <NavBar />
     <Box>
       <Image m='auto' objectFit={'cover'} w='90vw' h='50vh' src={info.image}></Image>

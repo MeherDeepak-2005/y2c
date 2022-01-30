@@ -17,6 +17,8 @@ import { EditIcon } from '@chakra-ui/icons';
 import { collection, getDocs, onSnapshot, where, query, getDoc } from '@firebase/firestore';
 import { db } from '../services/firebase';
 import NavBar from '../components/navbar';
+import Head from 'next/head';
+
 export default function About({ fetchedMembers }) {
   const [Loading, isLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
@@ -27,6 +29,9 @@ export default function About({ fetchedMembers }) {
   
 
   return <>
+    <Head>
+      <title>About us</title>
+    </Head>
     <NavBar imageUrl={imageUrl}/>
     <Heading m={5} color='blue.300' textAlign={'center'}>
       Our Team

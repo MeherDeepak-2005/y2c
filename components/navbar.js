@@ -1,6 +1,6 @@
 import ThemeToggleButton from '../helpers/theme-toggle-button';
 import {
-  HStack, Box, IconButton,Heading, Flex, Icon, Image, MenuList,Menu,MenuButton,MenuItem,Link, Text} from '@chakra-ui/react';
+  HStack, Box, IconButton,Heading, Flex, Icon, Image, MenuList,Menu,MenuButton,MenuItem,Link} from '@chakra-ui/react';
 import { AnimatePresence,motion } from 'framer-motion';
 import { useColorModeValue } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'

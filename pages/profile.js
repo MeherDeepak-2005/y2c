@@ -10,7 +10,7 @@ import {
   Heading,
   Text,
   IconButton,
-  Link
+  Link,
 } from '@chakra-ui/react';
 import ParseCookies from '../services/parseCookies';
 import jwt from 'jsonwebtoken';
@@ -99,7 +99,7 @@ function Profile({ userInfo }) {
                   bg: 'gray.200',
                 }}>
                 <Link href={telHref}>
-                  <Icon _focus={{outline:'none'}} size='xs' as={PhoneIcon} />
+                  <IconButton _focus={{outline:'none'}} size='xs' as={PhoneIcon} />
                 </Link>
               </Button>
             <Button
