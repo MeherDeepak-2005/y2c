@@ -80,7 +80,7 @@ function Vision({links}) {
                 <VStack alignItems='flex-start'>
                 {
                     typeof window !== 'undefined' ? (
-                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/vision/${selectedImage.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
         Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
       </Button>
                     ) : (
@@ -88,11 +88,11 @@ function Vision({links}) {
                     )
                     
           }
-                <Link href={`/view/vision/${selectedImage.id}`}>
+                <a href={`/view/vision/${selectedImage.id}`}>
             <Button mt={10} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                   Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
                   </Button>
-                  </Link>
+                  </a>
                   </VStack>
               </motion.div>
             </AnimatePresence>
@@ -140,7 +140,7 @@ function Vision({links}) {
               </Text>
               {
                     typeof window !== 'undefined' ? (
-                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/vision/${selectedImage.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
         Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
       </Button>
                     ) : (
@@ -148,11 +148,11 @@ function Vision({links}) {
                     )
                     
               }
-              <Link href={`/view/vision/${selectedImage.id}`} passHref>
+              <a href={`/view/vision/${selectedImage.id}`} passHref>
             <Button _focus={{outline: 'none'}} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                   Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
                 </Button>
-                </Link>
+                </a>
             </VStack>
           </GridItem>
         </SimpleGrid>

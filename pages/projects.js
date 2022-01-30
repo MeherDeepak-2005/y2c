@@ -3,7 +3,8 @@ import { getDocs, collection } from '@firebase/firestore';
 import { db } from '../services/firebase';
 import { Box,Text,Image,Button,VStack,Flex } from '@chakra-ui/react';
 import NavBar from '../components/navbar';
-import Link from 'next/link';
+import NextLink from 'next/link';
+import router from 'next/router';
 
 function projects({ fetchedProjects }) {
   const projects = JSON.parse(fetchedProjects);
@@ -31,13 +32,13 @@ function projects({ fetchedProjects }) {
                     )
                     
                   }
-                  <Link href={`/view/project/${project.id}`} passHref>
+                  <a href={`/view/project/${project.id}`}>
                   <Button _focus={{outline:'none'}} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                     
                       Read more
                     <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
                     </Button>
-                    </Link>
+                    </a>
                     
       </VStack>
     </Box>

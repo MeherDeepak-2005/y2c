@@ -112,7 +112,7 @@ function Project({ links }) {
                     )
                     
           }
-                <Link passHref href={`/view/project/${selectedImage.id}`}>
+                <a href={`/view/project/${selectedImage.id}`}>
                   <Button _focus={{ outline: 'none' }} mt={10} role='group' transition='all .2s' _hover={{ backgroundPosition: '100%', color: 'gray.800' }} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
                     
         <Text>
@@ -122,7 +122,7 @@ function Project({ links }) {
           </HStack>
         </Text>
                   </Button>
-                  </Link>
+                  </a>
                   </VStack>
               </motion.div>
             </AnimatePresence>
@@ -154,7 +154,7 @@ function Project({ links }) {
                     )
                     
           }
-              <Link href={`/view/project/${selectedImage.id}`}>
+              <a href={`/view/project/${selectedImage.id}`}>
             <Button _focus={{outline:'none'}} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
@@ -163,7 +163,7 @@ function Project({ links }) {
           </HStack>
         </Text>
                 </Button>
-              </Link>
+              </a>
             </VStack>
           </GridItem>
         </SimpleGrid>

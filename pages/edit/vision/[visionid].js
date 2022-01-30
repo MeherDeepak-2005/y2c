@@ -5,7 +5,7 @@ import {
   where
 } from '@firebase/firestore';
 import { db } from '../../../services/firebase';
-import { Stack,Text,Heading,Input,FormLabel,Textarea,Button } from '@chakra-ui/react';
+import { Stack,Text,Heading,Input,FormLabel,Textarea,Button,HStack } from '@chakra-ui/react';
 import NavBar from "../../../components/navbar";
 import { query as FireQuery,doc,updateDoc } from '@firebase/firestore';
 import { useState } from 'react';
@@ -163,7 +163,7 @@ export default function EditProfile({ document }) {
 
 export async function getServerSideProps({ query }) {
   let document = {}
-  const user = await getDocs(FireQuery(collection(db, 'visions'),where('id', '==', query.projectid)));
+  const user = await getDocs(FireQuery(collection(db, 'visions'),where('id', '==', query.visionid)));
   user.docs.map(item => {
     const data = item.data()
     document = data;
