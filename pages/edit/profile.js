@@ -64,16 +64,21 @@ export default function EditProfile({ userInfo }) {
             localStorage.setItem('image', downloadUrl);
             await updateDoc(docRef, {
               image: downloadUrl,
+              name: name,
+              phone: phone,
+              role: role,
+              message: message,
             })
           });
+      } else {
+        const update = await updateDoc(docRef, {
+          name: name,
+          phone: phone,
+          role: role,
+          message: message,
+        });
+        router.push('/profile')
       }
-      const update = await updateDoc(docRef, {
-        name: name,
-        phone: phone,
-        role: role,
-        message: message,
-      });
-      router.push('/profile')
     }
     else {
       alert('Message should be atleast of 100 characters')

@@ -147,7 +147,6 @@ export async function getServerSideProps({req}) {
   const token = cookies.token
   const userInfo = jwt.decode(token)
   const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
-
   return {
     props: {
       userInfo: JSON.stringify(user.docs.map(item => item.data()))
