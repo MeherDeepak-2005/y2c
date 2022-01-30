@@ -7,7 +7,8 @@ import {
   doc,
   query,
   where,
-  getDocs
+  getDocs,
+  serverTimestamp
 } from '@firebase/firestore';
 import {
   db
@@ -40,7 +41,8 @@ export default async function (req, res) {
     } catch (err) {
       const docRef = await addDoc(collection(db, 'members'), {
         email: email,
-        password: password
+        password: password,
+        timestamp: serverTimestamp()
       })
 
       await updateDoc(doc(db, 'members', docRef.id), {

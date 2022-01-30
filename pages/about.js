@@ -140,7 +140,7 @@ export default function About({ fetchedMembers }) {
 
 
 export async function getServerSideProps() {
-  const snapshot = await getDocs(query(collection(db, 'members'),orderBy('priority','asc')));
+  const snapshot = await getDocs(query(collection(db, 'members'),orderBy('timestamp','asc')));
   const data = []
   snapshot.docs.map((project) => {
     data.push(project.data());
