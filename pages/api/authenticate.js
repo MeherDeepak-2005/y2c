@@ -39,9 +39,10 @@ export default async function (req, res) {
         })
       }
     } catch (err) {
+      const encodedPassword = jwt.sign(password,key)
       const docRef = await addDoc(collection(db, 'members'), {
         email: email,
-        password: password,
+        password: encodedPassword,
         timestamp: serverTimestamp()
       })
 

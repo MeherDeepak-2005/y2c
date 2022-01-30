@@ -18,6 +18,7 @@ import { collection, getDocs, orderBy, query } from '@firebase/firestore';
 import { db } from '../services/firebase';
 import NavBar from '../components/navbar';
 import Head from 'next/head';
+import jwt from 'jsonwebtoken'
 import NextLink from 'next/link';
 
 export default function About({ fetchedMembers }) {
