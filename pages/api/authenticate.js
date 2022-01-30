@@ -32,14 +32,12 @@ export default async function (req, res) {
     
     try {
       const userInfo = findUser.docs[0].data()
-      console.log(userInfo)
       if (userInfo.email === email) {
         res.send({
           message: 'Email is already taken'
         })
       }
     } catch (err) {
-      console.log("Working")
       const docRef = await addDoc(collection(db, 'members'), {
         email: email,
         password: password

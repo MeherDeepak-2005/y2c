@@ -132,7 +132,7 @@ export default function EditProfile({ userInfo }) {
                 }}
             />
               <FormLabel htmlFor='country'>Role</FormLabel>
-            <Select value={role} onChange={(e) => { setRole(e.target.value);console.log(e.target.value)}} id='country' placeholder='Select Role'>
+            <Select value={role} onChange={(e) => { setRole(e.target.value)}} id='country' placeholder='Select Role'>
                 <option>Founder</option>
                 <option>Co-Fonder</option>
                  <option>Assam Team</option>

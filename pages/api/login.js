@@ -25,8 +25,6 @@ export default async function (req, res) {
 
   const { email, password } = req.body;
 
-  console.log(email, password);
-
   const findUser = await getDocs(query(collection(db, 'members'), where('email', '==', email)))
   try {
     const userInfo = findUser.docs[0].data()

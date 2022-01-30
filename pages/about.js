@@ -137,7 +137,6 @@ export async function getServerSideProps() {
   const snapshot = await getDocs(query(collection(db, 'members')));
   const data = []
   snapshot.docs.map((project) => {
-    console.log(project)
     data.push(project.data());
   })
  return {

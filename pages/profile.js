@@ -30,8 +30,6 @@ import NavBar from '../components/navbar';
 function Profile({ userInfo }) {
 
   const user = JSON.parse(userInfo)[0];
-
-  console.log(user)
   
   const telHref = `tel:${user.phone}`
 
@@ -146,7 +144,6 @@ export async function getServerSideProps({req}) {
   const cookies = ParseCookies(req)
   const token = cookies.token
   const userInfo = jwt.decode(token)
-  console.log(userInfo)
   const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
 
   return {
