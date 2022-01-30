@@ -16,6 +16,7 @@ export default function Home({ visionsLinks, projectUpdatesLinks }) {
     <>
       <Head>
         <title>Project Y2C</title>
+        <link rel="icon" href="/Logo.png" />
       </Head>
       <NavBar />
       <Header></Header>

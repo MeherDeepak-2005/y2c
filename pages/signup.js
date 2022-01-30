@@ -12,9 +12,6 @@ import { useState } from 'react';
 import router from 'next/router';
 import Cookie from 'js-cookie';
 import ParseCookies from '../services/parseCookies';
-import { useEffect } from 'react';
-import { collection, onSnapshot, where,query } from 'firebase/firestore';
-import { db } from '../services/firebase';
 import NavBar from '../components/navbar';
 import Cookies from 'js-cookie';
 
@@ -26,10 +23,6 @@ export default function JoinOurTeam({ authentication }) {
   const [load, setLoad] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
   
-  const push = () => {
-    router.push('/')
-  }
-
   const handleSubmit = async (e) => {
   
     e.preventDefault();

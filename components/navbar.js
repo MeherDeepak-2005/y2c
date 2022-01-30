@@ -12,8 +12,6 @@ function NavBar({imageUrl}) {
   const active = path === href
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
   
- 
-
   return (
     <NextLink href={href} passHref>
       <Link
@@ -30,13 +28,15 @@ function NavBar({imageUrl}) {
   }
   
   const logo = () => {
-    return <Image w='3rem' m={1} src='https://y2c-two.vercel.app/Logo.jpeg'/>
+    return <Image w='3rem' m={1} src='/Logo.png'/>
   }
   return (
     <AnimatePresence>
       <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{y:-20,opacity:0}} transition={{ duration: 1 }}>
         <HStack bg='white' zIndex={1000} bg='white' justifyContent='space-between' w='100%' m='auto'>
-          <Flex alignItems='center' flexDirection='row'>
+          <Flex alignItems={
+            'center'
+          } flexDirection='row'>
             <IconButton as={logo}/>
             <Heading cursor='pointer' onClick={()=> {router.push('/')}}  fontSize={20} variant='page-title'>Yes.You.Can</Heading>
             <HStack ml='2rem' spacing={5} display={{ base: 'none', md: 'flex' }}>
