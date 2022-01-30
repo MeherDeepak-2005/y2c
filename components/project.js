@@ -18,7 +18,9 @@ function Project({ links }) {
 
     const LinkItem = ({ href, path, _target, children, ...props }) => {
   const active = path === href
-  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+      const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+      
+
   
   return (
     <NextLink href={href} passHref>
@@ -33,7 +35,12 @@ function Project({ links }) {
       </Link>
     </NextLink>
   )
-  }
+    }
+  
+  let sliceLimitI = selectedImage.message.length / 100
+  console.log(sliceLimitI)
+  let sliceLimit = sliceLimitI * 40;
+  console.log(sliceLimit)
 
   const manageInfoIndex = () => {
     if (infoIndex === 0) {
@@ -117,7 +124,7 @@ function Project({ links }) {
                   hidden: { opacity: 0, y: 40 }
                 }}>
                 <Text>
-                  {selectedImage.message}
+                  {selectedImage.message.slice(0,sliceLimit)}...
                 </Text>
                 <VStack alignItems='flex-end'>
                 {
@@ -162,7 +169,7 @@ function Project({ links }) {
           <GridItem>
             <VStack>
             <Text maxW='94%' m='auto'>
-              {selectedImage.message.slice(0,300)}......
+              {selectedImage.message.slice(0,sliceLimit)}......
               </Text>
               {
                     typeof window !== 'undefined' ? (

@@ -53,6 +53,9 @@ function Vision({ links }) {
       setSelectedImage(links[infoIndex + 1]);
     }
   }
+  const sliceLimitI = selectedImage.message.length / 100
+  const sliceLimit = sliceLimitI * 40;
+
     return ( 
 <Box minHeight='40vh' mb={20} position='relative' height='fit-content'>
         <Heading w='100%' textAlign='center' mt={3}>
@@ -93,7 +96,7 @@ function Vision({ links }) {
                   hidden: { opacity: 0, y: 40 }
                 }}>
                 <Text>
-                  {selectedImage.message}
+                  {selectedImage.message.slice(0,sliceLimit)}...
                 </Text>
                 <VStack alignItems='flex-start'>
                 {
@@ -156,7 +159,7 @@ function Vision({ links }) {
           <GridItem>
             <VStack>
             <Text maxW='94%' m='auto'>
-              {selectedImage.message.slice(0,300)}......
+              {selectedImage.message.slice(0,sliceLimit)}......
               </Text>
               {
                     typeof window !== 'undefined' ? (
