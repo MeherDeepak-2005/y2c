@@ -31,10 +31,10 @@ function Vision({links}) {
       return null;
     }
     else {
-      setInfoIndex(infoIndex +1);
-      setSelectedImage(links[infoIndex+1]);
+      setInfoIndex(infoIndex + 1);
+      setSelectedImage(links[infoIndex + 1]);
     }
-   }
+  }
     return ( 
 <Box minHeight='40vh' mb={20} position='relative' height='fit-content'>
         <Heading w='100%' textAlign='center' mt={3}>

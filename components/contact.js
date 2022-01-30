@@ -141,6 +141,7 @@ const SocialButton = ({
 }) => {
   return (
     <chakra.button
+    _focus={{outline:'none'}}  
       bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
       rounded={'full'}
       w={8}
@@ -193,10 +194,10 @@ export default function LargeWithNewsletter() {
               © {new Date().getFullYear()}. Project Y2C. All rights reserved
             </Text>
             <Stack direction={'row'} spacing={6}>
-              <SocialButton label={'YouTube'} href={'https://www.linkedin.com/in/y2c-project-67ba2722a/'}>
+              <SocialButton _focus={{outline:'none'}} label={'YouTube'} href={'https://www.linkedin.com/in/y2c-project-67ba2722a/'}>
                 <FaLinkedin />
               </SocialButton>
-              <SocialButton label={'Instagram'} href={'https://www.instagram.com/project_y2c_/'}>
+              <SocialButton _focus={{outline:'none'}} label={'Instagram'} href={'https://www.instagram.com/project_y2c_/'}>
                 <FaInstagram />
               </SocialButton>
             </Stack>

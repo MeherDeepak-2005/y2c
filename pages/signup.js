@@ -72,7 +72,7 @@ export default function JoinOurTeam({ authentication }) {
           <Heading>
           You're already logged in.
           </Heading>
-          <Button onClick={logOut}>
+          <Button _focus={{outline:'none'}} onClick={logOut}>
             Log out
           </Button>
         </VStack>
@@ -164,7 +164,8 @@ export default function JoinOurTeam({ authentication }) {
                   }}
                 />
               </Stack>
-              <Button
+                <Button
+                  _focus={{outline:'none'}}
                 onClick={handleSubmit}
                 fontFamily={'heading'}
                 mt={8}
@@ -183,7 +184,7 @@ export default function JoinOurTeam({ authentication }) {
                <Text textAlign={'center'}>
                   Already have an account?
                 </Text>
-            <Button onClick={() => { router.push('/login') }}>
+            <Button _focus={{outline:'none'}} onClick={() => { router.push('/login') }}>
               Log In
               </Button>
           </Stack>

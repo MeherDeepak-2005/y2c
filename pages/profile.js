@@ -90,7 +90,8 @@ function Profile({ userInfo }) {
               </Badge>
           </Stack>
             <Stack mt={8} direction={'row'} spacing={4}>
-              <Button
+            <Button
+              _focus={{outline:'none'}}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -98,10 +99,11 @@ function Profile({ userInfo }) {
                   bg: 'gray.200',
                 }}>
                 <Link href={telHref}>
-                  <IconButton size='xs' as={PhoneIcon} />
+                  <Icon _focus={{outline:'none'}} size='xs' as={PhoneIcon} />
                 </Link>
               </Button>
-              <Button
+            <Button
+              _focus={{outline:'none'}}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -124,10 +126,10 @@ function Profile({ userInfo }) {
             </Button>
           </Stack>
           <Stack m={10}>
-            <Button onClick={()=> {router.push('/upload/project')}}>
+            <Button _focus={{outline:'none'}} onClick={()=> {router.push('/upload/project')}}>
               Upload a project
             </Button>
-            <Button onClick={()=> {router.push('/upload/vision')}}>
+            <Button _focus={{outline:'none'}} onClick={()=> {router.push('/upload/vision')}}>
               Update Vision
             </Button>
           </Stack>

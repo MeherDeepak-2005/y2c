@@ -62,7 +62,7 @@ export default function Login({ authentication }) {
           <Heading>
           You're already logged in.
           </Heading>
-          <Button onClick={logOut}>
+          <Button _focus={{outline:'none'}} onClick={logOut}>
             Log out
           </Button>
         </VStack>
@@ -128,7 +128,8 @@ export default function Login({ authentication }) {
                   }}
                 />
               </Stack>
-              <Button
+                <Button
+              _focus={{outline:'none'}}    
                 onClick={handleSubmit}
                 fontFamily={'heading'}
                 mt={8}
@@ -147,7 +148,7 @@ export default function Login({ authentication }) {
                 <Text textAlign={'center'}>
                   Don&#39;t have an account?
                 </Text>
-              <Button onClick={()=>{router.push('/signup')}}>
+              <Button _focus={{outline:'none'}} onClick={()=>{router.push('/signup')}}>
                 Signup
               </Button>
             </Stack>

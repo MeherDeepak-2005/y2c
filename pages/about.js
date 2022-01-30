@@ -57,7 +57,7 @@ export default function About({ fetchedMembers }) {
                       {member.message}
                     </Text>
                     {
-                      authenticated && <Button alignSelf='center' variant={'solid'} borderRadius={'10px'}>
+                      authenticated && <Button _focus={{outline:'none'}} alignSelf='center' variant={'solid'} borderRadius={'10px'}>
                       <EditIcon />
                       <Text ml={2}>Edit</Text>
                     </Button>
@@ -110,6 +110,7 @@ export default function About({ fetchedMembers }) {
                     }</Text>
                   </Stack>
                   <Button
+                    _focus={{outline:'none'}}
                     w={'full'}
                     mt={8}
                     bg={useColorModeValue('#151f21', 'gray.900')}

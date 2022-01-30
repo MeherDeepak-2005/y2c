@@ -131,13 +131,14 @@ export default function Project({ authentication }) {
                       image.name
                     }
                   </Text>
-                  <IconButton cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
+                  <IconButton _focus={{outline:'none'}} cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
                 </HStack>
                 
               )
             }
             </Stack>
-          <Button
+                <Button
+                  _focus={{outline:'none'}}
             onClick={handleSubmit}
               fontFamily={'heading'}
               mt={8}
@@ -166,7 +167,7 @@ export default function Project({ authentication }) {
           <Heading>
           You're not logged in.
           </Heading>
-          <Button onClick={()=> {router.push('/logout')}}>
+          <Button _focus={{outline:'none'}} onClick={()=> {router.push('/logout')}}>
             Log in
           </Button>
         </VStack>

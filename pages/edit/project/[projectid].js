@@ -5,7 +5,7 @@ import {
   where
 } from '@firebase/firestore';
 import { db } from '../../../services/firebase';
-import { Stack,Text,Heading,Input,FormLabel,Textarea,Button } from '@chakra-ui/react';
+import { Stack,Text,Heading,Input,FormLabel,Textarea,Button,HStack } from '@chakra-ui/react';
 import NavBar from "../../../components/navbar";
 import { query as FireQuery,doc,updateDoc } from '@firebase/firestore';
 import { useState } from 'react';
@@ -131,7 +131,7 @@ export default function EditProfile({ document }) {
                       image.name
                     }
                   </Text>
-                  <IconButton cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
+                  <IconButton _focus={{outline:'none'}} cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
                 </HStack>
                 
               )

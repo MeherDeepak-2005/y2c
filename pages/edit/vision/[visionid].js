@@ -131,13 +131,14 @@ export default function EditProfile({ document }) {
                       image.name
                     }
                   </Text>
-                  <IconButton cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
+                  <IconButton _focus={{outline:'none'}} cursor='pointer' onClick={()=>{setImage(null)}} size='10px' as={DeleteIcon}/>
                 </HStack>
                 
               )
             }
             </Stack>
-          <Button
+              <Button
+                _focus={{outline:'none'}}
             onClick={handleSubmit}
               fontFamily={'heading'}
               mt={8}
