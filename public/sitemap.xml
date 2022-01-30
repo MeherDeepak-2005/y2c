@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://y2c-two.vercel.app/</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://y2c-two.vercel.app/vision</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://y2c-two.vercel.app/projects</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://y2c-two.vercel.app/about</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://y2c-two.vercel.app/view/vision/FCk4Iod9yPYMvszN6FC9</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://y2c-two.vercel.app/view/project/IhQz3Kgtdg4PjGXsVRGE</loc>
+  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
