@@ -69,7 +69,10 @@ export default function EditProfile({ userInfo }) {
               role: role,
               message: message,
             })
+
           });
+        setLoad(false)
+        router.push('/profile')
       } else {
         const update = await updateDoc(docRef, {
           name: name,
@@ -77,6 +80,7 @@ export default function EditProfile({ userInfo }) {
           role: role,
           message: message,
         });
+        setLoad(false)
         router.push('/profile')
       }
     }
