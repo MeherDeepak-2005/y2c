@@ -128,7 +128,7 @@ import { useState } from 'react';
 const Logo = (props) => {
   return (
     <HStack>
-      <Image boxSize={30} borderRadius="full" src='Logo.jpeg' />
+      <Image boxSize={30} borderRadius="full" src='/Logo.png' />
       <Heading fontSize='1rem'>Project Y2C</Heading>
     </HStack>
   );
@@ -188,7 +188,7 @@ export default function LargeWithNewsletter() {
           spacing={8}>
           <Stack spacing={6}>
             <Box>
-              <Logo color={useColorModeValue('gray.700', 'white')} />
+              <Logo  />
             </Box>
             <Text fontSize={'sm'}>
               © {new Date().getFullYear()}. Project Y2C. All rights reserved

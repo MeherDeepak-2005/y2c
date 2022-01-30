@@ -9,7 +9,7 @@ import {
 import { Heading,IconButton,Text } from '@chakra-ui/react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import router from 'next/router';
-
+import Link from 'next/link';
 import Svg from './midtower-svg';
 
 
@@ -77,9 +77,23 @@ function Vision({links}) {
                 <Text>
                   {selectedImage.message}
                 </Text>
-            <Button onClick={()=> {router.push(`/view/vision/${selectedImage.id}`)}} mt={10} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+                <VStack alignItems='flex-start'>
+                {
+                    typeof window !== 'undefined' ? (
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+        Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+                    ) : (
+                        <></>
+                    )
+                    
+          }
+                <Link href={`/view/vision/${selectedImage.id}`}>
+            <Button mt={10} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                   Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
-              </Button>
+                  </Button>
+                  </Link>
+                  </VStack>
               </motion.div>
             </AnimatePresence>
           </GridItem>
@@ -123,10 +137,22 @@ function Vision({links}) {
             <VStack>
             <Text maxW='94%' m='auto'>
               {selectedImage.message.slice(0,300)}......
-            </Text>
-            <Button onClick={()=> {router.push(`/view/vision/${selectedImage.id}`)}} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+              </Text>
+              {
+                    typeof window !== 'undefined' ? (
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+        Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+                    ) : (
+                        <></>
+                    )
+                    
+              }
+              <Link href={`/view/vision/${selectedImage.id}`} passHref>
+            <Button role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{backgroundPosition: "100%",color:'white'}} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
                   Read more <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{marginLeft:".5rem"}}>&rarr;</Text>
-              </Button>
+                </Button>
+                </Link>
             </VStack>
           </GridItem>
         </SimpleGrid>

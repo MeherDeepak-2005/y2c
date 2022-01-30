@@ -9,6 +9,7 @@ import {
 import { Heading,IconButton,Text } from '@chakra-ui/react'
 import { ChevronLeftIcon,ChevronRightIcon } from '@chakra-ui/icons';
 import router from 'next/router';
+import Link from 'next/link';
 
 
 function Project({ links }) {
@@ -100,14 +101,29 @@ function Project({ links }) {
                 <Text>
                   {selectedImage.message}
                 </Text>
-               <Button _focus={{outline:'none'}} onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} mt={10} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+                <VStack alignItems='flex-end'>
+                {
+                    typeof window !== 'undefined' ? (
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' transition='all .2s' _hover={{ backgroundPosition: '100%', color: 'gray.800' }} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+        Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+                    ) : (
+                        <></>
+                    )
+                    
+          }
+                <Link passHref href={`/view/project/${selectedImage.id}`}>
+                  <Button _focus={{ outline: 'none' }} mt={10} role='group' transition='all .2s' _hover={{ backgroundPosition: '100%', color: 'gray.800' }} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+                    
         <Text>
           <HStack>
             <Text>Read more</Text>
             <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
           </HStack>
         </Text>
-      </Button>
+                  </Button>
+                  </Link>
+                  </VStack>
               </motion.div>
             </AnimatePresence>
           </GridItem>
@@ -127,15 +143,27 @@ function Project({ links }) {
             <VStack>
             <Text maxW='94%' m='auto'>
               {selectedImage.message.slice(0,300)}......
-            </Text>
-            <Button _focus={{outline:'none'}} onClick={()=> {router.push(`/view/project/${selectedImage.id}`)}} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+              </Text>
+              {
+                    typeof window !== 'undefined' ? (
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' borderBottom='.2rem solid teal' transition='all .2s' _hover={{ backgroundPosition: "100%", color: 'white' }} backgroundSize='230%' bgImage={'linear-gradient(120deg, white 0%, white 50%, teal 50%)'}>
+        Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
+      </Button>
+                    ) : (
+                        <></>
+                    )
+                    
+          }
+              <Link href={`/view/project/${selectedImage.id}`}>
+            <Button _focus={{outline:'none'}} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
             <Text>Read more</Text>
             <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
           </HStack>
         </Text>
-      </Button>
+                </Button>
+              </Link>
             </VStack>
           </GridItem>
         </SimpleGrid>
