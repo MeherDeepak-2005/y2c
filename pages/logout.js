@@ -14,6 +14,7 @@ function Logout() {
     const token = Cookies.get('token')
     if (token) {
       Cookies.remove('token')
+      localStorage.removeItem('image')
     }
   }, [])
 

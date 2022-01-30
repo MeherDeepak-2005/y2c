@@ -31,7 +31,7 @@ export default async function (req, res) {
   try {
     const userInfo = findUser.docs[0].data()
 
-    if (userInfo.password !== jwt.decode(password)) {
+    if (jwt.decode(userInfo.password) !== password) {
       res.send({
         message: 'Wrong password'
       })
