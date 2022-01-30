@@ -10,7 +10,7 @@ import {
   Flex,
   Stack,
   useColorModeValue,
-  SkeletonCircle
+  SkeletonCircle, Link
 } from '@chakra-ui/react';
 import { useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons';
@@ -18,8 +18,27 @@ import { collection, getDocs, orderBy, query } from '@firebase/firestore';
 import { db } from '../services/firebase';
 import NavBar from '../components/navbar';
 import Head from 'next/head';
+import NextLink from 'next/link';
 
 export default function About({ fetchedMembers }) {
+  const LinkItem = ({ href, path, _target, children, ...props }) => {
+  const active = path === href
+  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+  
+  return (
+    <NextLink href={href} passHref>
+      <Link
+        p={2}
+        bg={active ? 'grassTeal' : undefined}
+        color={active ? '#202023' : inactiveColor}
+        _target={_target}
+        {...props}
+      >
+        {children}
+      </Link>
+    </NextLink>
+  )
+  }
   const [Loading, isLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
   const [imageUrl, setImageUrl] = useState();
@@ -114,6 +133,8 @@ export default function About({ fetchedMembers }) {
                       member.role
                     }</Text>
                   </Stack>
+                  <NextLink href={`/view/${member.id}`} passHref>
+                    <Link>
                   <Button
                     _focus={{outline:'none'}}
                     w={'full'}
@@ -126,7 +147,9 @@ export default function About({ fetchedMembers }) {
                       boxShadow: 'lg',
                     }}>
                     Know More
-                  </Button>
+                      </Button>
+                      </Link>
+                    </NextLink>
                 </Box>
               </Box>
             </Center>
@@ -145,7 +168,6 @@ export async function getServerSideProps() {
   snapshot.docs.map((project) => {
     data.push(project.data());
   })
-  console.log(data);
  return {
     props: {
       fetchedMembers: JSON.stringify(data)
