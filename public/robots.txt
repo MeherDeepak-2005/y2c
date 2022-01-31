@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /about
+
+User-agent: *
+Allow: /
+
+Sitemap: https://y2c-two.vercel.app/sitemap.xml
