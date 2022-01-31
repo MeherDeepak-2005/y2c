@@ -15,9 +15,8 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import router from 'next/router';
-import Cookie from 'js-cookie';
 import ParseCookies from '../../services/parseCookies';
-import { addDoc, updateDoc, collection, doc, where } from '@firebase/firestore';
+import { addDoc, updateDoc, collection, serverTimestamp } from '@firebase/firestore';
 import { DeleteIcon } from '@chakra-ui/icons';
 import {db,storage} from '../../services/firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from '@firebase/storage';
@@ -52,6 +51,7 @@ export default function Project({ authentication }) {
               await updateDoc(docRef, {
                 id: docRef.id,
                 image: downloadUrl,
+                timestamp: serverTimestamp()
               })
             });
         }

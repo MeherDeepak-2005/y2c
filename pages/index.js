@@ -6,7 +6,7 @@ import Vision from '../components/Vision';
 import Head from 'next/head'
 import Project from '../components/project';
 import Contact from '../components/contact';
-import { getDocs,collection } from 'firebase/firestore';
+import { getDocs,collection, orderBy } from 'firebase/firestore';
 import { db } from '../services/firebase';
 
 export default function Home({ visionsLinks, projectUpdatesLinks }) {
@@ -33,9 +33,9 @@ export default function Home({ visionsLinks, projectUpdatesLinks }) {
 export async function getServerSideProps() {
   const projectUpdates = []
   const visions = []
-  const resProjects = await getDocs(collection(db, 'project_updates'))
+  const resProjects = await getDocs(collection(db, 'project_updates'),orderBy('timestamp','desc'))
   resProjects.forEach(doc => projectUpdates.push(doc.data()))
-  const resVision = await getDocs(collection(db, 'visions'))
+  const resVision = await getDocs(collection(db, 'visions'),orderBy('timestamp','desc'))
   resVision.forEach(doc => visions.push(doc.data()))
 
   return {
