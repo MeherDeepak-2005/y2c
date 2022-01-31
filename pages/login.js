@@ -22,7 +22,7 @@ export default function Login({ authentication }) {
   const [load, setLoad] = useState();
 
   const handleEmail = (e) => {
-    if (e.target.value === ' ') {
+    if (e.target.value.charAt(e.target.value.length-1) === ' ') {
       return null;
     }
     else {

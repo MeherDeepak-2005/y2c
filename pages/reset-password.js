@@ -22,7 +22,7 @@ export default function Login() {
   const [load, setLoad] = useState();
 
   const handleId = (e) => {
-    if (e.target.value === ' ') {
+    if (e.target.value.charAt(e.target.value.length-1) === ' ') {
       return null;
     }
     else {

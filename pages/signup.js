@@ -24,9 +24,10 @@ export default function JoinOurTeam({ authentication }) {
   const [confirmPassword, setConfirmPassword] = useState();
 
   const handleEmail = (e) => {
-    if (e.target.value === ' ') {
+    if (e.target.value.charAt(e.target.value.length-1) === ' ') {
       return null;
-    } else {
+    }
+    else {
       setEmail(e.target.value)
     }
   }
