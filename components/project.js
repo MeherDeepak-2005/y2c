@@ -173,7 +173,7 @@ function Project({ links }) {
               </Text>
               {
                     typeof window !== 'undefined' ? (
-                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${document.id}`) }} role='group' variant='outline' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
+                      localStorage.getItem('image') && <Button _focus={{outline:'none'}} onClick={() => { router.push(`/edit/project/${selectedImage.id}`) }} role='group' variant='outline' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         Edit <Text transition='all .2s ease-in' ml='.3rem' _groupHover={{ marginLeft: ".5rem" }}>&rarr;</Text>
       </Button>
                     ) : (
@@ -181,7 +181,8 @@ function Project({ links }) {
                     )
                     
           }
-              <a href={`/view/project/${selectedImage.id}`}>
+              <NextLink href={`/view/project/${selectedImage.id}`} passHref>
+                <Link _hover={{textDecoration:'none'}}>
             <Button _focus={{outline:'none'}} role='group' transition='all .2s' _hover={{backgroundPosition: '100%',color:'gray.800'}} backgroundImage='linear-gradient(240deg, white 0%,#fff 50%, salmon 50%)' backgroundSize='230%' backgroundPosition='0%'>
         <Text>
           <HStack>
@@ -189,8 +190,9 @@ function Project({ links }) {
             <Text transition='all .2s ease-in' _groupHover={{marginLeft: '1rem'}}>&rarr;</Text>
           </HStack>
         </Text>
-                </Button>
-              </a>
+                  </Button>
+                  </Link>
+              </NextLink>
             </VStack>
           </GridItem>
         </SimpleGrid>
