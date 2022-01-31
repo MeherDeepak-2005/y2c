@@ -30,6 +30,7 @@ import NavBar from '../components/navbar';
 function Profile({ userInfo }) {
 
   const user = JSON.parse(userInfo)[0];
+  console.log(user)
   
   const telHref = `tel:${user.phone}`
 

@@ -53,7 +53,7 @@ export default function EditProfile({ userInfo }) {
     setLoad(true)
     const docRef = doc(db, 'members', userDoc);
 
-    if (message.length > 100) {
+    if (message?.length > 100) {
     
       if (image) {
         const imageRef = ref(storage, `profile_pictures/${name}/${image.name}`)
