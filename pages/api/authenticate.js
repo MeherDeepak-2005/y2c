@@ -43,7 +43,8 @@ export default async function (req, res) {
       const docRef = await addDoc(collection(db, 'members'), {
         email: email,
         password: encodedPassword,
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
+        image: 'https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png'
       })
 
       await updateDoc(doc(db, 'members', docRef.id), {

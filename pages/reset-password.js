@@ -15,18 +15,18 @@ import ParseCookies from '../services/parseCookies';
 import Cookies from 'js-cookie';
 import NavBar from '../components/navbar';
 
-export default function Login({ authentication }) {
+export default function Login() {
 
-  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
   const [password, setPassword] = useState();
   const [load, setLoad] = useState();
 
-  const handleEmail = (e) => {
+  const handleId = (e) => {
     if (e.target.value === ' ') {
       return null;
     }
     else {
-      setEmail(e.target.value)
+      setId(e.target.value)
     }
   }
   
@@ -34,53 +34,30 @@ export default function Login({ authentication }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoad(true)
-    const res = await fetch('/api/login', {
+    const res = await fetch('/api/resetpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: email,
+        id : id,
           password: password
         })
     }).then((t) => t.json())
     console.log(res)
-    if (res.jwt_token) {
-      Cookie.set('token', res.jwt_token)
-      localStorage.setItem('image',res.image)
+    if (res.success) {
       setLoad(false)
-      router.push('/profile')
+      alert(res.success)
+      router.push('/login')
     }
     else {
       setLoad(false)
-      alert('Invalid email or password')
+      alert(res.message)
     }
   }
 
-  const logOut = () => {
-    Cookies.remove('token')
-    localStorage.removeItem('image')
-    router.push('/login')
-  }
+  
 
-  if (authentication) {
-    return (
-      <>
-        <NavBar/>
-      <Center h='100vh'>
-        <VStack>
-          <Heading>
-          You're already logged in.
-          </Heading>
-          <Button _focus={{outline:'none'}} onClick={logOut}>
-            Log out
-          </Button>
-        </VStack>
-        </Center>
-      </>
-        
-    )
-  } else {
   
     return (
       <>
@@ -98,8 +75,8 @@ export default function Login({ authentication }) {
                 <Heading
                   color={'gray.800'}
                   lineHeight={1.1}
-                  fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                  Log In
+                    fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                    Reset password
                   <Text
                     as={'span'}
                     bgGradient="linear(to-r, red.400,pink.400)"
@@ -112,10 +89,10 @@ export default function Login({ authentication }) {
             <Box as={'form'} mt={10}>
               <Stack spacing={4}>
                 <Input
-                  onChange={(e) => handleEmail(e)}
+                  onChange={(e) => handleId(e)}
                   required
-                  placeholder="Email"
-                  value={email}
+                  placeholder="Your ID"
+                  value={id}
                   bg={'gray.100'}
                   border={0}
                   color={'gray.500'}
@@ -162,28 +139,9 @@ export default function Login({ authentication }) {
               <Button _focus={{outline:'none'}} onClick={()=>{router.push('/signup')}}>
                 Signup
               </Button>
-              <Text textAlign={'center'}>
-                Forgot password ?
-                </Text>
-              <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/reset-password') }}>
-                Reset Password
-              </Button>
             </Stack>
           </Box>
       </Center>
       </>
     );
-  }
-}
-
-
-Login.getInitialProps = ({ req }) => {
-  const cookies = ParseCookies(req)
-  let token = false
-  if (cookies.token) {
-    token = true
-  }
-  return {
-    authentication: token
-  };
 }

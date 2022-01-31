@@ -11,6 +11,7 @@ import {
   Text,
   IconButton,
   Link,
+  VStack,
 } from '@chakra-ui/react';
 import ParseCookies from '../services/parseCookies';
 import jwt from 'jsonwebtoken';
@@ -27,17 +28,35 @@ import router from 'next/router'
 import NavBar from '../components/navbar';
 
 
-function Profile({ userInfo }) {
+function Profile({ userInfo,authentication }) {
 
-  const user = JSON.parse(userInfo)[0];
-  console.log(user)
+  const authenticationStatus = JSON.parse(authentication);
+
   
-  const telHref = `tel:${user.phone}`
 
-  return (
-    <>
-      <NavBar />
-      <Center py={6}>
+  if (!authenticationStatus) {
+      
+
+    return (
+      <Center height={'100vh'}>
+        <VStack>
+          <Heading>
+          You are not logged in
+        </Heading>
+        <Button _focus={{outline: 'none'}} onClick={() => { router.push('/login') }}>
+          Log in
+        </Button>
+        </VStack>
+      </Center>
+    )
+  }
+  else {
+    const user = JSON.parse(userInfo)[0];
+    const telHref = `tel:${user.phone}`
+    return (
+      <>
+        <NavBar />
+        <Center py={6}>
           <Box
             maxW={'320px'}
             w={'full'}
@@ -74,9 +93,9 @@ function Profile({ userInfo }) {
               textAlign={'center'}
               color={useColorModeValue('gray.700', 'gray.400')}
               px={3}>
-            {
-              user?.message?.slice(0,20)
-          }...
+              {
+                user?.message?.slice(0, 20)
+              }...
             </Text>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
@@ -89,10 +108,10 @@ function Profile({ userInfo }) {
                   user?.role
                 }
               </Badge>
-          </Stack>
+            </Stack>
             <Stack mt={8} direction={'row'} spacing={4}>
-            <Button
-              _focus={{outline:'none'}}
+              <Button
+                _focus={{ outline: 'none' }}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -100,11 +119,11 @@ function Profile({ userInfo }) {
                   bg: 'gray.200',
                 }}>
                 <Link href={telHref}>
-                  <IconButton _focus={{outline:'none'}} size='xs' as={PhoneIcon} />
+                  <IconButton _focus={{ outline: 'none' }} size='xs' as={PhoneIcon} />
                 </Link>
               </Button>
-            <Button
-              _focus={{outline:'none'}}
+              <Button
+                _focus={{ outline: 'none' }}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -124,33 +143,49 @@ function Profile({ userInfo }) {
                   bg: 'blue.500',
                 }}>
                 Edit
-            </Button>
-          </Stack>
-          <Stack m={10}>
-            <Button _focus={{outline:'none'}} onClick={()=> {router.push('/upload/project')}}>
-              Upload a project
-            </Button>
-            <Button _focus={{outline:'none'}} onClick={()=> {router.push('/upload/vision')}}>
-              Update Vision
-            </Button>
-          </Stack>
-         </Box>
-      </Center>
-    </>
-  )
+              </Button>
+            </Stack>
+            <Stack m={10}>
+              <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/upload/project') }}>
+                Upload a project
+              </Button>
+              <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/upload/vision') }}>
+                Update Vision
+              </Button>
+              <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/logout') }}>
+                Log out
+              </Button>
+              <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/known/resetPassword') }}>
+                Reset password
+              </Button>
+            </Stack>
+          </Box>
+        </Center>
+      </>
+    )
+  }
 }
 
 export default Profile;
 
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps({ req }) {
+  let authentication = true;
+  const userData = []
   const cookies = ParseCookies(req)
   const token = cookies.token
-  const userInfo = jwt.decode(token)
-  const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
+  if (!token) {
+    authentication = false;
+  }
+  else {
+    const userInfo = jwt.decode(token)
+    const user = await getDocs(query(collection(db, 'members'), where('email', '==', userInfo.email)))
+    user.docs.map(item => userData.push(item.data()))
+  }
   return {
     props: {
-      userInfo: JSON.stringify(user.docs.map(item => item.data()))
+      userInfo: JSON.stringify(userData),
+      authentication: JSON.stringify(authentication)
     }
   };
 }
