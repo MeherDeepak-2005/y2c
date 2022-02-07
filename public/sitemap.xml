@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
   <loc>https://projecty2c.com/</loc>
-  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
-  <changefreq>weekly</changefreq>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
   <priority>1.00</priority>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://projecty2c.com/vision</loc>
-  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://projecty2c.com/projects</loc>
-  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://projecty2c.com/donate</loc>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://projecty2c.com/view/vision/FCk4Iod9yPYMvszN6FC9</loc>
-  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://projecty2c.com/view/project/IhQz3Kgtdg4PjGXsVRGE</loc>
-  <lastmod>2022-01-30T08:19:04+00:00</lastmod>
+  <lastmod>2022-02-07T10:43:35+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
