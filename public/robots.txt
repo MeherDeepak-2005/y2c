@@ -4,4 +4,4 @@ Disallow: /about
 User-agent: *
 Allow: /
 
-Sitemap: https://y2c-two.vercel.app/sitemap.xml
+Sitemap: https://projecty2c.com/sitemap.xml
