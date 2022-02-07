@@ -49,7 +49,7 @@ function NavBar({imageUrl}) {
               <NextLink href='/about'>
                 <Link>About us</Link>
               </NextLink>
-              <NextLink href='https://meherdeepak-2005.github.io/donate-y2c'>
+              <NextLink href='/donate'>
                 <Link>
                   Donate
                 </Link>
@@ -77,11 +77,10 @@ function NavBar({imageUrl}) {
                   <NextLink href="/about" passHref>
                     <MenuItem as={Link}>About us</MenuItem>
                   </NextLink>
-                  <NextLink href='https://meherdeepak-2005.github.io/donate-y2c'>
-                    <MenuItem
-                    as={Link}>
-                    Donate
-                    </MenuItem>
+                  <NextLink href='/donate' passHref>
+                    <Link>
+                      Donate
+                      </Link>
                   </NextLink>
                 </MenuList>
               </Menu>
