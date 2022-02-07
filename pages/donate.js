@@ -24,7 +24,7 @@ function donate() {
          <Box h='60vh' borderRadius={10} p={3} boxShadow={'2xl'} m={10} minW='20rem'>
           <Heading w='100%' fontSize='2rem' textAlign={'center'}>UPI Payment Details</Heading>
           <Center h='25%'>
-            <Text>
+            <Text fontWeight={'900'} fontSize='1.4rem'>
               <Stack>
                 <Center>
                 <b>Account Id:</b>
