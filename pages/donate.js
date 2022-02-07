@@ -1,4 +1,4 @@
-import { Center, Heading,Box,Text, Stack, Image } from "@chakra-ui/react";
+import { Center, Heading,Box,Text, Flex,Stack } from "@chakra-ui/react";
 import Card from "../components/Card";
 
 
@@ -19,16 +19,15 @@ function donate() {
             </Center>
         </Box>
       </Center>
-       <Stack direction={'horizontal'}>
+       <Flex flexDirection={'row'} wrap={'wrap'}>
         <Card heading='Pay with QRCode' src='https://cdn.discordapp.com/attachments/903863587343314975/939847397465538580/081100187220000000091644147461134.jpg' />
-         <Box borderRadius={10} p={3} boxShadow={'2xl'} m={10} w='25vw'>
-          <Heading w='100%' fontSize='2.5vw' textAlign={'center'}>UPI Payment Details</Heading>
+         <Box h='60vh' borderRadius={10} p={3} boxShadow={'2xl'} m={10} minW='20rem'>
+          <Heading w='100%' fontSize='2rem' textAlign={'center'}>UPI Payment Details</Heading>
           <Center h='25%'>
             <Text>
               <Stack>
                 <Center>
                 <b>Account Id:</b>
-
                 </Center>
                 <b>7337431470@hdfcbank</b>
               </Stack>
@@ -37,8 +36,8 @@ function donate() {
           <Center bgRepeat={'no-repeat'} bgPos='center' bgSize={'contain'} bgImage='https://arpitatulsyan.com/wp-content/uploads/2020/03/upi-logo-png-4.png' h='50%'>
           </Center>
         </Box>
-         <Box borderRadius={10} p={3} boxShadow={'2xl'} m={10} w='25vw'>
-          <Heading w='100%' fontSize='2.5vw' textAlign={'center'}>Net Banking</Heading>
+         <Box minW='20rem' h='60vh' borderRadius={10} p={3} boxShadow={'2xl'} m={10} w='25vw'>
+          <Heading w='100%' fontSize='2rem' textAlign={'center'}>Account Transfer</Heading>
           <Center h='80%'>
             <Text>
               <Stack>
@@ -56,7 +55,7 @@ function donate() {
             </Text>
           </Center>
         </Box>
-      </Stack>
+      </Flex>
     </>
   )
 }
