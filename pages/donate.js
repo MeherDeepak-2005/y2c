@@ -42,15 +42,15 @@ function donate() {
             <Text>
               <Stack>
                 <Center>
-                <b>Account Details:</b>
+                <b style={{fontSize:'1.5rem'}}>Account Details:</b>
                 </Center>
-                <b>
+                <b style={{fontSize:'1rem'}}>
                   Account Holder: SUDALA SWAPNA
                 </b>
-                <b>Account Number: 50100492241621</b>
-                <b>IFSC: HDFC0000811</b>
-                <b>Branch: RAMACHANDRAPURAM - TELANGANA</b>
-                <b>Account Type: SAVING</b>
+                <b style={{fontSize:'1rem'}}>Account Number: 50100492241621</b>
+                <b style={{fontSize:'1rem'}}>IFSC: HDFC0000811</b>
+                <b style={{fontSize:'1rem'}}>Branch: RAMACHANDRAPURAM - TELANGANA</b>
+                <b style={{fontSize:'1rem'}}>Account Type: SAVING</b>
               </Stack>
             </Text>
           </Center>
