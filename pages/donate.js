@@ -20,7 +20,7 @@ function donate() {
         </Box>
       </Center>
        <Flex flexDirection={'row'} wrap={'wrap'}>
-        <Card heading='Pay with QRCode' src='https://cdn.discordapp.com/attachments/903863587343314975/939847397465538580/081100187220000000091644147461134.jpg' />
+        <Card heading='Pay with QRCode' src='/paytm.jpg' />
          <Box h='60vh' borderRadius={10} p={3} boxShadow={'2xl'} m={10} minW='20rem'>
           <Heading w='100%' fontSize='2rem' textAlign={'center'}>UPI Payment Details</Heading>
           <Center h='25%'>

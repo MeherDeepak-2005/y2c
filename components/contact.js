@@ -194,7 +194,7 @@ export default function LargeWithNewsletter() {
               © {new Date().getFullYear()}. Project Y2C. All rights reserved
             </Text>
             <Stack direction={'row'} spacing={6}>
-              <SocialButton _focus={{outline:'none'}} label={'YouTube'} href={'https://www.linkedin.com/in/y2c-project-67ba2722a/'}>
+              <SocialButton _focus={{outline:'none'}} label={'YouTube'} href={'https://www.linkedin.com/in/project-y2c-67ba2722a/'}>
                 <FaLinkedin />
               </SocialButton>
               <SocialButton _focus={{outline:'none'}} label={'Instagram'} href={'https://www.instagram.com/project_y2c_/'}>
@@ -204,15 +204,14 @@ export default function LargeWithNewsletter() {
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Organisation</ListHeader>
-            <Link href={'#'}>About us</Link>
-            <Link href={'#'}>Contact us</Link>
-            <Link href={'#'}>Our Vision</Link>
-            <Link href={'#'}>Project Updates</Link>
+            <Link href={'/about'}>About us</Link>
+            <Link href={'/https://forms.gle/t2dEcUsWXdnboLfa8'}>Contact us</Link>
+            <Link href={'/vision'}>Our Vision</Link>
+            <Link href={'/projects'}>Project Updates</Link>
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Support</ListHeader>
-            <Link href={'#'}>Donate</Link>
-            <Link href={'#'}>Sponsor</Link>
+            <Link href={'/donate'}>Donate</Link>
           </Stack>
           <Stack align={'flex-start'}>
             <ListHeader>Stay up to date</ListHeader>
