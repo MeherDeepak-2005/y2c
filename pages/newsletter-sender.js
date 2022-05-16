@@ -25,7 +25,7 @@ function newsletterSender() {
   let downloadUrl;
 
   const getSubscriberList = async () => {
-    const subscriberList = await getDocs(collection(db, 'newsletter_experiment'));
+    const subscriberList = await getDocs(collection(db, 'newsletter'));
     subscriberList.docs.map(
       email => mailingList.push(email.data().email)
     )
