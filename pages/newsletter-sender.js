@@ -5,7 +5,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from '@firebase/storage';
 import { db, storage } from '../services/firebase';
 import { useDropzone } from 'react-dropzone';
 import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
-
+import router from 'next/router'
 
 function newsletterSender() {
 
@@ -56,6 +56,7 @@ function newsletterSender() {
       })
     }).then((res) => res.json);
     console.log(res);
+    router.push('/');
   }
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject, acceptedFiles } =
     useDropzone({ accept: "application/pdf", noClick: true, noKeyboard: true, onDropAccepted: () => { setImageUpload(true) } });
