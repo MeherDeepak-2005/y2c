@@ -23,22 +23,22 @@ import NextLink from 'next/link';
 
 export default function About({ fetchedMembers }) {
   const LinkItem = ({ href, path, _target, children, ...props }) => {
-  const active = path === href
-  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
-  
-  return (
-    <NextLink href={href} passHref>
-      <Link
-        p={2}
-        bg={active ? 'grassTeal' : undefined}
-        color={active ? '#202023' : inactiveColor}
-        _target={_target}
-        {...props}
-      >
-        {children}
-      </Link>
-    </NextLink>
-  )
+    const active = path === href
+    const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+
+    return (
+      <NextLink href={href} passHref>
+        <Link
+          p={2}
+          bg={active ? 'grassTeal' : undefined}
+          color={active ? '#202023' : inactiveColor}
+          _target={_target}
+          {...props}
+        >
+          {children}
+        </Link>
+      </NextLink>
+    )
   }
   const [Loading, isLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
@@ -46,60 +46,60 @@ export default function About({ fetchedMembers }) {
 
 
   const members = JSON.parse(fetchedMembers)
-  
+
 
   return <>
     <Head>
       <title>About us</title>
     </Head>
-    <NavBar imageUrl={imageUrl}/>
+    <NavBar imageUrl={imageUrl} />
     <Heading m={5} color='blue.300' textAlign={'center'}>
       Our Team
     </Heading>
     <VStack spacing={10}>
-    {
-      members.map(member => {
-        return (
-          <>
-          <Box display={{ base: 'none', md:'block'}} maxW='90%' m='auto' boxShadow={'xl'}>
-              <SimpleGrid pr={10} columns={3} rows={1}>
-                <GridItem m='auto'>
-                  <Box width='fit-content'>
-                    <SkeletonCircle boxSize={'150px'} zIndex="10" isLoaded={Loading}>
-                      <Image position='relative' boxSize='150px' onLoad={() => { isLoading(true) }} objectFit={'cover'} borderRadius={'50%'} src={member.image}/>
-                    </SkeletonCircle>
-                    <Text p={2} textAlign={'center'}>
-                      {member.role}
-                    </Text>
-                  </Box>
-                </GridItem>
-                <GridItem colSpan={2}>
-                  <VStack py={5}>
-                    <Heading textAlign='left' width='100%' fontSize={'2xl'}>
-                      {member.name}
-                    </Heading>
-                    <Text>
-                      {member.message}
-                    </Text>
-                    {
-                      authenticated && <Button _focus={{outline:'none'}} alignSelf='center' variant={'solid'} borderRadius={'10px'}>
-                      <EditIcon />
-                      <Text ml={2}>Edit</Text>
-                    </Button>
-                    }
-                  </VStack>
-                </GridItem>
-              </SimpleGrid>
-            </Box>
-            <Center display={{ base: 'block', md:'none'}} py={6}>
-              <Box
-                maxW={'270px'}
-                w={'full'}
-                margin='auto'
-                bg={useColorModeValue('white', 'gray.800')}
-                boxShadow={'2xl'}
-                rounded={'md'}
-                overflow={'hidden'}>
+      {
+        members.map(member => {
+          return (
+            <>
+              <Box display={{ base: 'none', md: 'block' }} maxW='90%' m='auto' boxShadow={'xl'}>
+                <SimpleGrid pr={10} columns={3} rows={1}>
+                  <GridItem m='auto'>
+                    <Box width='fit-content'>
+                      <SkeletonCircle boxSize={'150px'} zIndex="10" isLoaded={Loading}>
+                        <Image position='relative' boxSize='150px' onLoad={() => { isLoading(true) }} objectFit={'cover'} borderRadius={'50%'} src={member.image} />
+                      </SkeletonCircle>
+                      <Text p={2} textAlign={'center'}>
+                        {member.role}
+                      </Text>
+                    </Box>
+                  </GridItem>
+                  <GridItem colSpan={2}>
+                    <VStack py={5}>
+                      <Heading textAlign='left' width='100%' fontSize={'2xl'}>
+                        {member.name}
+                      </Heading>
+                      <Text>
+                        {member.message}
+                      </Text>
+                      {
+                        authenticated && <Button _focus={{ outline: 'none' }} alignSelf='center' variant={'solid'} borderRadius={'10px'}>
+                          <EditIcon />
+                          <Text ml={2}>Edit</Text>
+                        </Button>
+                      }
+                    </VStack>
+                  </GridItem>
+                </SimpleGrid>
+              </Box>
+              <Center display={{ base: 'block', md: 'none' }} py={6}>
+                <Box
+                  maxW={'270px'}
+                  w={'full'}
+                  margin='auto'
+                  bg={useColorModeValue('white', 'gray.800')}
+                  boxShadow={'2xl'}
+                  rounded={'md'}
+                  overflow={'hidden'}>
                   <Image
                     onLoad={() => { isLoading(true) }}
                     h={'120px'}
@@ -109,67 +109,81 @@ export default function About({ fetchedMembers }) {
                     }
                     objectFit={'cover'}
                   />
-              <Flex justify={'center'} mt={-12}>
-                
-                  <Avatar
-                    size={'xl'}
-                    src={
-                      member.image
-                    }
-                    alt={'Author'}
-                    css={{
-                      border: '2px solid white',
-                    }}
-                  />
-                </Flex>
+                  <Flex justify={'center'} mt={-12}>
 
-                <Box p={6}>
-                  <Stack spacing={0} align={'center'} mb={5}>
-                    <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                      {
-                        member.name
+                    <Avatar
+                      size={'xl'}
+                      src={
+                        member.image
                       }
-                    </Heading>
-                    <Text color={'gray.500'}>{
-                      member.role
-                    }</Text>
-                  </Stack>
-                  <NextLink href={`/view/${member.id}`} passHref>
-                    <Link>
-                  <Button
-                    _focus={{outline:'none'}}
-                    w={'full'}
-                    mt={8}
-                    bg={useColorModeValue('#151f21', 'gray.900')}
-                    color={'white'}
-                    rounded={'md'}
-                    _hover={{
-                      transform: 'translateY(-2px)',
-                      boxShadow: 'lg',
-                    }}>
-                    Know More
-                      </Button>
+                      alt={'Author'}
+                      css={{
+                        border: '2px solid white',
+                      }}
+                    />
+                  </Flex>
+
+                  <Box p={6}>
+                    <Stack spacing={0} align={'center'} mb={5}>
+                      <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
+                        {
+                          member.name
+                        }
+                      </Heading>
+                      <Text color={'gray.500'}>{
+                        member.role
+                      }</Text>
+                    </Stack>
+                    <NextLink href={`/view/${member.id}`} passHref>
+                      <Link>
+                        <Button
+                          _focus={{ outline: 'none' }}
+                          w={'full'}
+                          mt={8}
+                          bg={useColorModeValue('#151f21', 'gray.900')}
+                          color={'white'}
+                          rounded={'md'}
+                          _hover={{
+                            transform: 'translateY(-2px)',
+                            boxShadow: 'lg',
+                          }}>
+                          Know More
+                        </Button>
                       </Link>
                     </NextLink>
+                  </Box>
                 </Box>
-              </Box>
-            </Center>
-          </>
-        )
-      })}
+              </Center>
+            </>
+          )
+        })}
     </VStack>
   </>;
 }
 
+export async function getStaticProps() {
+  const snapshot = await getDocs(query(collection(db, "members"), orderBy('timestamp', 'asc')));
+  const data = [];
 
+  snapshot.docs.map((project) => {
+    data.push(project.data());
+  })
+
+  return {
+    props: {
+      fetchedMembers: JSON.stringify(data)
+    },
+    revalidate: 1 * 60 * 60 * 24 * 30
+  }
+}
 
 export async function getServerSideProps() {
-  const snapshot = await getDocs(query(collection(db, 'members'),orderBy('timestamp','asc')));
+  const snapshot = await getDocs(query(collection(db, 'members'), orderBy('timestamp', 'asc')));
   const data = []
   snapshot.docs.map((project) => {
     data.push(project.data());
   })
- return {
+  return {
     props: {
       fetchedMembers: JSON.stringify(data)
     }

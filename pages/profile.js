@@ -18,7 +18,6 @@ import jwt from 'jsonwebtoken';
 import { db } from '../services/firebase';
 import { PhoneIcon } from '@chakra-ui/icons';
 import {
-  onSnapshot,
   collection,
   where,
   query,
@@ -28,24 +27,24 @@ import router from 'next/router'
 import NavBar from '../components/navbar';
 
 
-function Profile({ userInfo,authentication }) {
+function Profile({ userInfo, authentication }) {
 
   const authenticationStatus = JSON.parse(authentication);
 
-  
+
 
   if (!authenticationStatus) {
-      
+
 
     return (
       <Center height={'100vh'}>
         <VStack>
           <Heading>
-          You are not logged in
-        </Heading>
-        <Button _focus={{outline: 'none'}} onClick={() => { router.push('/login') }}>
-          Log in
-        </Button>
+            You are not logged in
+          </Heading>
+          <Button _focus={{ outline: 'none' }} onClick={() => { router.push('/login') }}>
+            Log in
+          </Button>
         </VStack>
       </Center>
     )
@@ -111,7 +110,6 @@ function Profile({ userInfo,authentication }) {
             </Stack>
             <Stack mt={8} direction={'row'} spacing={4}>
               <Button
-                _focus={{ outline: 'none' }}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -123,7 +121,6 @@ function Profile({ userInfo,authentication }) {
                 </Link>
               </Button>
               <Button
-                _focus={{ outline: 'none' }}
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
