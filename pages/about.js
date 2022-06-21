@@ -177,15 +177,15 @@ export async function getStaticProps() {
   }
 }
 
-export async function getServerSideProps() {
-  const snapshot = await getDocs(query(collection(db, 'members'), orderBy('timestamp', 'asc')));
-  const data = []
-  snapshot.docs.map((project) => {
-    data.push(project.data());
-  })
-  return {
-    props: {
-      fetchedMembers: JSON.stringify(data)
-    }
-  }
-}
+// export async function getServerSideProps() {
+//   const snapshot = await getDocs(query(collection(db, 'members'), orderBy('timestamp', 'asc')));
+//   const data = []
+//   snapshot.docs.map((project) => {
+//     data.push(project.data());
+//   })
+//   return {
+//     props: {
+//       fetchedMembers: JSON.stringify(data)
+//     }
+//   }
+// }
